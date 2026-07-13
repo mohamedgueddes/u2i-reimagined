@@ -11,7 +11,9 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import logoImg from "../assets/logo-u2i.jpg";
+import logoImg from "../assets/logo-u2i-removebg-preview.png";
+import { Navbar } from "../components/Navbar";
+import { Footer } from "../components/Footer";
 
 function NotFoundComponent() {
   return (
@@ -96,7 +98,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
     { rel: "stylesheet", href: appCss },
-    { rel: "icon", href: logoImg, type: "image/x-icon" },
+    { rel: "icon", href: logoImg, type: "image/png" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       {
         rel: "preconnect",
@@ -134,8 +136,14 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <div className="w-full max-w-full overflow-x-hidden flex flex-col min-h-screen">
+        <Navbar />
+        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+        <main className="flex-grow w-full max-w-full overflow-x-hidden">
+          <Outlet />
+        </main>
+        <Footer />
+      </div>
     </QueryClientProvider>
   );
 }

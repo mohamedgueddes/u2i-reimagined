@@ -12,6 +12,7 @@ import {
   Phone,
   Search,
   Youtube,
+  X,
 } from "lucide-react";
 
 import pharmaImage from "@/assets/hero-pharma.jpg";
@@ -165,7 +166,6 @@ function Index() {
       >
         Aller au contenu
       </a>
-      <SiteHeader />
       <main id="main">
         <Hero />
         <Presentation />
@@ -174,7 +174,6 @@ function Index() {
         <References />
         <PartnersMarquee />
       </main>
-      <SiteFooter />
     </>
   );
 }
@@ -234,19 +233,23 @@ function SiteHeader() {
             <img
               src={logo.url}
               alt="Univers Inox"
-              className={`w-auto rounded-md transition-all duration-300 ${scrolled ? "h-9" : "h-11"}`}
+              className={`w-auto rounded-md object-contain transition-all duration-300 ${scrolled ? "h-12 sm:h-14" : "h-14 sm:h-16"}`}
             />
           </a>
 
           <nav className="hidden flex-1 lg:block" aria-label="Menu principal">
             <ul className="flex gap-8 [&:hover_a]:opacity-50">
-              {["Qui sommes-nous", "Secteurs", "Equipements"].map((l) => (
-                <li key={l}>
+              {[
+                { label: "Qui sommes-nous", href: "/about" },
+                { label: "Secteurs", href: "#secteurs" },
+                { label: "Equipements", href: "#equipements" },
+              ].map((item) => (
+                <li key={item.label}>
                   <a
-                    href={`#${l.toLowerCase()}`}
+                    href={item.href}
                     className="text-sm font-bold text-white transition-opacity hover:!opacity-100"
                   >
-                    {l}
+                    {item.label}
                   </a>
                 </li>
               ))}
@@ -280,23 +283,36 @@ function SiteHeader() {
 
       {/* Mobile drawer */}
       <div
-        className={`fixed inset-y-0 right-0 z-[60] w-4/5 max-w-sm bg-black px-8 pt-24 transition-transform duration-300 lg:hidden ${open ? "translate-x-0" : "translate-x-full"
+        className={`fixed inset-y-0 right-0 z-[60] w-4/5 max-w-sm bg-black backdrop-blur-xl px-8 pt-24 pb-8 transition-transform duration-300 lg:hidden border-l border-white/10 ${open ? "translate-x-0" : "translate-x-full"
           }`}
       >
-        <ul className="flex flex-col gap-6">
-          {["Qui sommes-nous", "Secteurs", "Equipements", "References", "Blog", "Contact"].map(
-            (l) => (
-              <li key={l}>
-                <a
-                  href={`#${l.toLowerCase()}`}
-                  onClick={() => setOpen(false)}
-                  className="text-2xl font-bold text-white"
-                >
-                  {l}
-                </a>
-              </li>
-            ),
-          )}
+        <button
+          className="absolute top-6 right-6 grid h-10 w-10 place-items-center rounded-full bg-white/10 text-white"
+          onClick={() => setOpen(false)}
+          aria-label="Fermer le menu"
+        >
+          <X className="h-5 w-5" />
+        </button>
+
+        <ul className="flex flex-col gap-6 pt-4">
+          {[
+            { label: "Qui sommes-nous", href: "/about" },
+            { label: "Secteurs", href: "#secteurs" },
+            { label: "Equipements", href: "#equipements" },
+            { label: "References", href: "#references" },
+            { label: "Blog", href: "#blog" },
+            { label: "Contact", href: "#contact" },
+          ].map((item) => (
+            <li key={item.label}>
+              <a
+                href={item.href}
+                onClick={() => setOpen(false)}
+                className="text-2xl font-bold text-white hover:text-[#e0141c] transition-colors block py-1 border-b border-white/10"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
     </header>
@@ -645,7 +661,7 @@ function Presentation() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
           {/* Image Side */}
-          <div className="relative group mx-auto w-full max-w-md lg:max-w-none">
+          <div className="relative group mx-auto w-full max-w-md lg:max-w-none hidden lg:block">
             {/* Decorative background blob */}
             <div className="absolute -inset-4 bg-gradient-to-r from-[#e0141c]/20 to-transparent rounded-[2rem] blur-2xl opacity-50 transition-opacity duration-500 group-hover:opacity-70" />
 
@@ -697,8 +713,33 @@ function Presentation() {
               </p>
             </div>
 
+            <div className="mt-8 mb-8 lg:hidden">
+              <div className="relative mx-auto w-full max-w-sm">
+                <div className="relative rounded-[1.5rem] overflow-hidden shadow-xl">
+                  <img
+                    src={slide1Image}
+                    alt="Univers Inox Industriel"
+                    className="w-full h-auto object-cover aspect-[4/5]"
+                  />
+                  <div className="absolute inset-0 border-[3px] border-white/20 rounded-[1.5rem] pointer-events-none mix-blend-overlay" />
+                </div>
+
+                <div className="absolute bottom-0 sm:-bottom-4 right-0 sm:-right-4 bg-white p-4 rounded-2xl shadow-lg border border-black/5">
+                  <div className="flex items-center gap-3">
+                    <div className="flex flex-col justify-center items-center h-11 w-11 bg-[#e0141c] text-white rounded-full font-black text-base">
+                      10+
+                    </div>
+                    <div>
+                      <div className="text-[11px] font-bold text-neutral-900 leading-tight">Années</div>
+                      <div className="text-[11px] font-medium text-neutral-500 leading-tight">d'expérience</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div className="mt-10 flex flex-wrap gap-4">
-              <a href="#" className="btn btn-red px-8 py-3.5 shadow-lg shadow-red-500/25 group">
+              <a href="/about" className="btn btn-red px-8 py-3.5 shadow-lg shadow-red-500/25 group">
                 Lire plus <span className="ml-1 tracking-normal font-normal transition-transform group-hover:translate-x-1">»</span>
               </a>
               <a href="#" className="btn btn-red px-8 py-3.5 shadow-lg shadow-red-500/25">
@@ -775,6 +816,15 @@ function Sectors() {
             </a>
           ))}
         </div>
+        
+        <div className="mt-14 flex justify-center">
+          <a href="/secteurs" className="group flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold text-[#e0141c] transition-all hover:bg-neutral-100 hover:shadow-lg">
+            Voir tous les secteurs
+            <span className="grid h-8 w-8 place-items-center rounded-full bg-[#e0141c] text-white transition-transform group-hover:translate-x-1">
+              <ArrowUpRight className="h-4 w-4" />
+            </span>
+          </a>
+        </div>
       </div>
     </section>
   );
@@ -824,14 +874,14 @@ function Equipments() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-90 transition-opacity duration-500 group-hover:opacity-100" />
               
               <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end">
-                <div className="transform translate-y-8 transition-transform duration-500 group-hover:translate-y-0">
+                <div className="transform md:translate-y-8 md:transition-transform md:duration-500 md:group-hover:translate-y-0">
                   <div className="w-10 h-10 mb-4 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 text-white group-hover:bg-[#e0141c] group-hover:border-[#e0141c] transition-colors duration-500">
                     <span className="font-mono text-xs font-bold">{String(i + 1).padStart(2, '0')}</span>
                   </div>
                   <h3 className="text-2xl font-bold text-white leading-tight mb-2 drop-shadow-md">
                     {eq.title}
                   </h3>
-                  <div className="h-0 opacity-0 overflow-hidden transition-all duration-500 group-hover:h-8 group-hover:opacity-100">
+                  <div className="h-auto opacity-100 md:h-0 md:opacity-0 md:overflow-hidden md:transition-all md:duration-500 md:group-hover:h-8 md:group-hover:opacity-100">
                     <p className="text-[#e0141c] text-sm mt-2 flex items-center gap-2 font-bold uppercase tracking-wider">
                       Découvrir <ArrowUpRight className="h-4 w-4" />
                     </p>
@@ -843,6 +893,15 @@ function Equipments() {
               <div className="absolute bottom-0 left-0 h-1 bg-[#e0141c] w-0 transition-all duration-500 group-hover:w-full" />
             </article>
           ))}
+        </div>
+        
+        <div className="mt-14 flex justify-center">
+          <a href="/equipements" className="group flex items-center gap-2 rounded-full bg-[#e0141c] px-6 py-3 text-sm font-bold text-white transition-all hover:bg-[#c01118] hover:shadow-[0_0_20px_rgba(224,20,28,0.4)]">
+            Voir tout notre parc machines
+            <span className="grid h-8 w-8 place-items-center rounded-full bg-white text-[#e0141c] transition-transform group-hover:translate-x-1">
+              <ArrowUpRight className="h-4 w-4" />
+            </span>
+          </a>
         </div>
       </div>
     </section>
@@ -933,6 +992,15 @@ function PartnersMarquee() {
               />
             </div>
           ))}
+        </div>
+        
+        <div className="mt-14 flex justify-center">
+          <a href="/references" className="group flex items-center gap-2 rounded-full bg-black px-6 py-3 text-sm font-bold text-white transition-all hover:bg-neutral-800 hover:shadow-lg">
+            Découvrir toutes nos références
+            <span className="grid h-8 w-8 place-items-center rounded-full bg-[#e0141c] text-white transition-transform group-hover:translate-x-1">
+              <ArrowUpRight className="h-4 w-4" />
+            </span>
+          </a>
         </div>
       </div>
     </section>

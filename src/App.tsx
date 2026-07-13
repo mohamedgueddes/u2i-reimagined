@@ -2,12 +2,12 @@ import { useEffect } from "react";
 
 /* ────── global helpers exposed to inline handlers ────── */
 const PAGES = [
-  "home","about","savoirfaire","services","pointsforts","pharma",
+  "home","quisommesnous","about","savoirfaire","services","pointsforts","pharma",
   "agro","chimie","cosmetique","mobilier","interventions",
   "equipements","references","certifications","blog","contact",
 ];
 const PARENT_NAV: Record<string, string> = {
-  about:"n-about",savoirfaire:"n-about",services:"n-about",pointsforts:"n-about",
+  quisommesnous:"n-about",about:"n-about",savoirfaire:"n-about",services:"n-about",pointsforts:"n-about",
   pharma:"n-sectors",agro:"n-sectors",chimie:"n-sectors",cosmetique:"n-sectors",
   mobilier:"n-sectors",interventions:"n-sectors",equipements:"n-equipements",
   references:"n-references",certifications:"n-certifications",blog:"n-blog",
@@ -108,6 +108,7 @@ const HTML_CONTENT = `
     <span class="nl on" id="n-home" onclick="nav('home')">Accueil</span>
     <span class="nl has-drop" id="n-about">À propos
       <div class="drop">
+        <span class="drop-link" onclick="nav('quisommesnous')">Qui sommes-nous</span>
         <span class="drop-link" onclick="nav('about')">Présentation</span>
         <span class="drop-link" onclick="nav('savoirfaire')">Savoir-faire</span>
         <span class="drop-link" onclick="nav('services')">Services proposés</span>
@@ -145,6 +146,7 @@ const HTML_CONTENT = `
   </div>
   <div class="mob-body">
     <span class="mob-item" onclick="mc('home')">Accueil</span>
+    <span class="mob-item" onclick="mc('quisommesnous')">Qui sommes-nous</span>
     <span class="mob-item" onclick="mc('about')">Présentation</span>
     <span class="mob-sub" onclick="mc('savoirfaire')">→ Savoir-faire</span>
     <span class="mob-sub" onclick="mc('services')">→ Services proposés</span>
@@ -336,7 +338,7 @@ const HTML_CONTENT = `
       <span class="atag">Chaudronnerie</span><span class="atag">Soudure orbitale</span><span class="atag">Tuyauterie process</span><span class="atag">Qualification</span><span class="atag">Maintenance</span><span class="atag">2D/3D</span>
     </div>
     <div style="display:flex;gap:12px;flex-wrap:wrap">
-      <span class="btn btn-red" onclick="nav('about')">En savoir plus <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span class="btn btn-red" onclick="nav('quisommesnous')">En savoir plus <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M6 2l4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       <a href="https://www.u2iprocess.com/wp-content/uploads/2022/03/depliant-U2I-2016-01.pdf" target="_blank" class="btn btn-ghost-w">Télécharger brochure</a>
     </div>
   </div>
@@ -454,6 +456,62 @@ const HTML_CONTENT = `
 </div>
 
 </div><!-- /home -->
+
+<!-- ═══ PAGE: QUI SOMMES-NOUS ═══ -->
+<div id="p-quisommesnous" class="page">
+<div class="pg-header"><img src="https://www.u2iprocess.com/wp-content/uploads/2021/11/univer-inox-presentation.jpg" alt="U2I atelier" class="pg-header-img"><div class="pg-header-overlay"></div><div class="pg-header-stripe"></div><div class="wrap pg-header-inner"><div class="breadcrumb"><span onclick="nav('home')">Accueil</span><em>/</em><span>Qui sommes-nous</span></div><span class="label-w" style="margin-bottom:14px;display:block">Notre histoire</span><h1>Univers Inox<br>Industriel.</h1><p>Fondée en 2015 à Akouda, Sousse — spécialistes en tuyauterie inox et soudure orbitale pour les industries de haute exigence.</p></div></div>
+
+<!-- MAIN ABOUT SECTION -->
+<div class="about-split"><div class="about-img-side"><img src="https://www.u2iprocess.com/wp-content/uploads/2021/11/univer-inox-presentation.jpg" alt="U2I équipe" loading="lazy"><div class="about-img-overlay"></div><div class="about-badge"><div class="about-badge-n">10+</div><div class="about-badge-l">Ans d'expérience</div></div></div><div class="about-content"><span class="label-w">Qui nous sommes</span><h2 style="color:#fff;margin-bottom:20px">Spécialistes de la<br>tuyauterie inox<br>et soudure orbitale.</h2><p>Fondée en 2015, <strong style="color:rgba(255,255,255,.85)">Univers Inox Industriel (U2I)</strong> est une PME basée à Akouda, à proximité de Sousse en Tunisie. Nous sommes spécialisés en chaudronnerie, travaux de soudure et tuyauterie industrielle pour les secteurs de haute exigence : pharmaceutique, agroalimentaire, chimique et cosmétique.</p><p>Notre équipe d'<strong style="color:rgba(255,255,255,.85)">ingénieurs et techniciens expérimentés</strong>, forte de plus de 10 ans d'expérience dans le domaine pharmaceutique, maîtrise toutes les phases d'un projet — de l'étude à la qualification complète.</p><p>Nous écoutons les besoins spécifiques de nos clients et délivrons des solutions conformes aux standards les plus exigeants : FDA, ASME BPE, GMP, ISO 9001.</p><div class="about-tags"><span class="atag">Fondée 2015</span><span class="atag">Akouda, Sousse</span><span class="atag">Chaudronnerie</span><span class="atag">Tuyauterie inox</span><span class="atag">Soudure orbitale</span><span class="atag">Qualification IQ/OQ/PQ</span></div></div></div>
+
+<!-- STATS BANNER -->
+<div class="stats-band"><div class="stats-inner">
+  <div class="stat-cell"><div class="stat-label">Fondation</div><div class="stat-n">2015</div><div class="stat-sub">Akouda, Sousse — Tunisie</div></div>
+  <div class="stat-cell"><div class="stat-label">Expérience</div><div class="stat-n">10<em>+</em></div><div class="stat-sub">Ans en pharmaceutique</div></div>
+  <div class="stat-cell"><div class="stat-label">Secteurs</div><div class="stat-n">5<em>+</em></div><div class="stat-sub">Industries haute exigence</div></div>
+  <div class="stat-cell"><div class="stat-label">Partenariat</div><div class="stat-n">AXXAIR</div><div class="stat-sub">Officiel depuis 2015</div></div>
+</div></div>
+
+<!-- NOTRE MISSION / VISION -->
+<section class="bg-off"><div class="wrap"><div class="sh"><div class="accent-line"><span class="label">Notre approche</span></div><h2>Mission & Valeurs.</h2></div><div class="svc-grid">
+  <div class="svc"><div style="font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:var(--red);letter-spacing:.04em;margin-bottom:8px;text-transform:uppercase">Mission</div><h4>Excellence & Conformité</h4><p>Fournir des solutions de tuyauterie inox et soudure orbitale fiables, conformes aux normes internationales les plus strictes, pour les industries pharmaceutique, alimentaire et chimique.</p></div>
+  <div class="svc"><div style="font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:var(--red);letter-spacing:.04em;margin-bottom:8px;text-transform:uppercase">Valeurs</div><h4>Qualité & Réactivité</h4><p>Qualité irréprochable, écoute client, réactivité en intervention urgente, expertise technique reconnue, intégrité professionnelle.</p></div>
+  <div class="svc"><div style="font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:var(--red);letter-spacing:.04em;margin-bottom:8px;text-transform:uppercase">Engagement</div><h4>Partenaire de confiance</h4><p>Nous nous engageons auprès de chaque client à être un partenaire fiable, transparent et à l'écoute, de la phase d'étude à la qualification complète.</p></div>
+</div></div></section>
+
+<!-- EXPERTISE -->
+<section class="bg-white"><div class="wrap"><div class="sh center"><div class="accent-line" style="justify-content:center"><span class="label">Notre expertise</span></div><h2>Domaines de compétence.</h2></div><div class="svc-grid">
+  <div class="svc"><div class="svc-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M12 4V2M12 22v-2M4 12H2M22 12h-2M6.3 6.3L4.9 4.9M19.1 19.1l-1.4-1.4M6.3 17.7L4.9 19.1M19.1 4.9l-1.4 1.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></div><h4>Soudure orbitale TIG</h4><p>Solution complète AXXAIR depuis 2015. Têtes fermées/ouvertes, weld logs documentés, conformité FDA, ASME BPE, IQ/OQ/PQ.</p></div>
+  <div class="svc"><div class="svc-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2L4 6v6c0 5.5 4 10.7 8 12 4-1.3 8-6.5 8-12V6z" stroke="currentColor" stroke-width="1.5"/></svg></div><h4>Tuyauterie pharmaceutique</h4><p>EPPI/WFI, EP/PW, VP/PS, CIP/SIP. ASME BPE, FDA 21 CFR, GMP. Ra ≤ 0,8 µm garanti.</p></div>
+  <div class="svc"><div class="svc-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 10h18M10 3v18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div><h4>Modélisation 2D/3D</h4><p>Isométriques, P&ID, spécifications matériaux, CAO/DAO, analyse techniques, plans de soudure.</p></div>
+  <div class="svc"><div class="svc-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="10" cy="10" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M16 16l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><h4>Endoscopie & contrôle</h4><p>Inspection interne HD des soudures. Rapport illustré FDA. Documentation qualification 100% conforme.</p></div>
+  <div class="svc"><div class="svc-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 19l5-12 5 8 5-6 4 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h4>Traitement de surface</h4><p>Dégraissage, décapage, passivation ASTM A967/A380. Contrôle qualité intégré.</p></div>
+  <div class="svc"><div class="svc-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2L4 6v6c0 5.5 4 10.7 8 12 4-1.3 8-6.5 8-12V6z" stroke="currentColor" stroke-width="1.5"/><path d="M9 12l2 2 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h4>Qualification & GMP</h4><p>IQ/OQ/PQ complets. Protocoles et rapports FDA 21 CFR. Documentation GMP intégrale.</p></div>
+</div></div></section>
+
+<!-- NOS CERTIFICATIONS -->
+<section class="bg-off"><div class="wrap"><div class="sh center"><div class="accent-line" style="justify-content:center"><span class="label">Certifications</span></div><h2>Standards & Conformité.</h2></div><div class="cert-row">
+  <div class="cert-chip"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 2l3 7h7l-5.5 4 2 7L11 16l-6.5 4 2-7L1 9h7z" stroke="currentColor" stroke-width="1.4"/></svg><div><div class="cert-chip-n">ISO 9001</div><div class="cert-chip-s">Quality Management</div></div></div>
+  <div class="cert-chip"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 2L3 6v6c0 4.8 3.5 9.3 8 10.5C16.5 21.3 20 16.8 20 12V6z" stroke="currentColor" stroke-width="1.4"/></svg><div><div class="cert-chip-n">FDA 21 CFR</div><div class="cert-chip-s">Pharmaceutical</div></div></div>
+  <div class="cert-chip"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="1.4"/><path d="M8 11l2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg><div><div class="cert-chip-n">ASME BPE</div><div class="cert-chip-s">Process Equipment</div></div></div>
+  <div class="cert-chip"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="1.4"/><path d="M8 11h6M11 8v6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><div><div class="cert-chip-n">3-A / EHEDG</div><div class="cert-chip-s">Food Safety</div></div></div>
+  <div class="cert-chip"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="1.4"/><path d="M11 7v4l3 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><div><div class="cert-chip-n">IQ/OQ/PQ</div><div class="cert-chip-s">Qualification</div></div></div>
+  <div class="cert-chip"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M3 15l4-10 4 7 4-5 3.5 8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg><div><div class="cert-chip-n">ASTM A967</div><div class="cert-chip-s">Passivation</div></div></div>
+</div></div></section>
+
+<!-- POINTS FORTS -->
+<section class="bg-navy"><div class="wrap"><div class="sh center" style="margin-bottom:50px"><div class="accent-line" style="justify-content:center"><span class="label" style="color:var(--red)">Pourquoi U2I</span></div><h2 style="color:#fff">Nos points forts.</h2></div><div class="svc-grid">
+  <div class="svc"><div style="font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--red);line-height:1;margin-bottom:12px">01</div><h4 style="color:#fff">Expertise pharma reconnue</h4><p style="color:rgba(255,255,255,.75)">Plus de 10 ans d'expérience dans les exigences strictes des industries pharmaceutique et biotechnologique.</p></div>
+  <div class="svc"><div style="font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--red);line-height:1;margin-bottom:12px">02</div><h4 style="color:#fff">Partenaire officiel AXXAIR</h4><p style="color:rgba(255,255,255,.75)">Solution complète de soudage orbital depuis 2015. Formation continue, vente et support technique inclus.</p></div>
+  <div class="svc"><div style="font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--red);line-height:1;margin-bottom:12px">03</div><h4 style="color:#fff">Conformité totale</h4><p style="color:rgba(255,255,255,.75)">FDA 21 CFR, ASME BPE, GMP, ISO 9001, 3-A, EHEDG, ASTM — toutes les certifications requises.</p></div>
+  <div class="svc"><div style="font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--red);line-height:1;margin-bottom:12px">04</div><h4 style="color:#fff">Documentation complète</h4><p style="color:rgba(255,255,255,.75)">Dossiers GMP/FDA, isométriques, P&ID, certificats matériaux, weld logs, endoscopie, attestations soudeur.</p></div>
+  <div class="svc"><div style="font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--red);line-height:1;margin-bottom:12px">05</div><h4 style="color:#fff">Réactivité & flexibilité</h4><p style="color:rgba(255,255,255,.75)">Interventions urgentes sur site. Disponibilité rapide. Réponse sous 24h ouvrées.</p></div>
+  <div class="svc"><div style="font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--red);line-height:1;margin-bottom:12px">06</div><h4 style="color:#fff">Couverture régionale</h4><p style="color:rgba(255,255,255,.75)">Tunisie, Algérie et international. Mobilité des équipes techniques sur vos installations.</p></div>
+</div></div></section>
+
+<!-- CONTACT CTA -->
+<div class="cta-band"><div class="cta-band-bg"></div><div class="cta-band-stripe"></div><div class="wrap"><div class="cta-inner"><div class="cta-text"><h2>Discutons de votre projet.</h2><p>Notre équipe spécialiste vous accompagne de la conception à la qualification complète.</p></div><div class="cta-actions"><span class="btn btn-gold" onclick="nav('contact')">Nous contacter <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 6.5h9M6.5 2l4.5 4.5L6.5 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><a href="tel:+21650191004" class="btn btn-ghost-w">+216 50 191 004</a></div></div></div></div>
+</div><!-- /quisommesnous -->
 
 <!-- ═══ PAGE: À PROPOS ═══ -->
 <div id="p-about" class="page">
