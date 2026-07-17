@@ -124,7 +124,7 @@ h4{font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:700;letter-spacin
 .hero-sub{color:rgba(255,255,255,.6);font-size:1rem;line-height:1.8;max-width:520px;margin-bottom:40px;font-weight:300}
 .hero-sub strong{color:rgba(255,255,255,.9);font-weight:600}
 .hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:56px}
-.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid rgba(255,255,255,.08);border-radius:var(--rl);overflow:hidden;background:rgba(255,255,255,.02);backdrop-filter:blur(8px)}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid rgba(255,255,255,.08);border-radius:var(--rl);overflow:hidden;background:rgba(255,255,255,.02)}
 .hstat{padding:22px 20px;border-right:1px solid rgba(255,255,255,.07);position:relative}
 .hstat:last-child{border-right:none}
 .hstat::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,var(--red),transparent);opacity:0;transition:opacity .3s}

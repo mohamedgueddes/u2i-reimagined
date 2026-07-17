@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Logs
 logs
 *.log
@@ -8,41 +7,31 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-.output
-.vinxi
+# Dependencies
+node_modules/
+
+# Build/Vite
+dist/
+dist-ssr/
+.output/
+.vinxi/
 .tanstack/**
-.nitro
-*.local
+.nitro/
+.vite/
 
 # Wrangler / Cloudflare
 .wrangler/
 .dev.vars
 
-# Editor directories and files
-.vscode/*
+# IDE
+.vscode/
 !.vscode/extensions.json
-.idea
-.DS_Store
+.idea/
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
-=======
-# Dependencies
-node_modules/
-package-lock.json
-
-# Vite
-dist/
-.vite/
-
-# IDE
-.vscode/
-.idea/
 *.swp
 *.swo
 *~
@@ -55,4 +44,3 @@ Thumbs.db
 .env
 .env.local
 .env.*.local
->>>>>>> b41c357b2b24b53d7cbe226d5bab44ee38fc8ace

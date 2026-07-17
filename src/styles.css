@@ -133,9 +133,11 @@
   .section-paper {
     background: var(--paper);
     color: var(--paper-foreground);
-    border-radius: var(--radius-section);
-    margin: 2rem 0;
+    border-radius: 0;
+    margin: 0;
     padding: 6rem 0;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
   }
 
   .section-dark {

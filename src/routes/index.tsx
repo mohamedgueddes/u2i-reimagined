@@ -1,9 +1,8 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 import { createFileRoute } from "@tanstack/react-router";
 import {
   ArrowUpRight,
-  ChevronLeft,
-  ChevronRight,
   Facebook,
   Instagram,
   Linkedin,
@@ -27,9 +26,9 @@ import a3pImage from "@/assets/sector-interventions.jpg";
 import axxairImage from "@/assets/hero-welding.jpg";
 import slide1Image from "@/assets/20230329_100358.jpg";
 import slide2Image from "@/assets/IMG_1416.png";
-import slide3Image from "@/assets/WhatsApp Image 2026-07-08 at 1.13.25 PM.jpeg";
-import slide4Image from "@/assets/WhatsApp Image 2026-07-08 at 1.13.24 PM.jpeg";
-import heroVideo from "@/assets/hero section vd.mp4";
+import slide3Image from "@/assets/WhatsApp Image 2026-07-08 at 1.16.12 PM - Copie.jpeg";
+import slide4Image from "@/assets/sector-mobilier.jpg";
+import presentationVideo from "@/assets/U2I video banner.mp4";
 import logoImage from "@/assets/logo-u2i-removebg-preview.png";
 import axxairLogoImage from "@/assets/partners/AXXAIR-logo.png";
 import sanofiLogoImage from "@/assets/partners/Sanofi.png";
@@ -48,8 +47,7 @@ import cert5 from "@/assets/certif/CERTIFICATE-Official-distributor_page-0001_00
 import cert6 from "@/assets/certif/IMG_8071.jpg";
 import cert7 from "@/assets/certif/iso-1.png";
 import cert8 from "@/assets/certif/UIT-officiel-distributeur-_page-0001_001-1.jpg";
-import expertiseBgImage from "@/assets/ChatGPT_Image_9_juil._2026__08_08_05-removebg-preview.png";
-import expertiseBgImage2 from "@/assets/redredred-removebg-preview.png";
+import u2iUpdatedVideo from "@/assets/U2I Updated.mp4";
 
 import equip1 from "@/assets/equipments/Endoscopie/20200910_114715 (1).jpg";
 import equip2 from "@/assets/equipments/Machine de contrôle de gaz/IMG-20200912-WA0014.jpg";
@@ -86,7 +84,7 @@ const HERO_SLIDES = [
   {
     label: "Tuyauterie & Soudure",
     title:
-      "« Pourquoi la précision continue de guider l'ambition de Groupe Univers Inox »",
+      "« Pourquoi elle  la précision continue de guider l'ambition de Groupe Univers Inox »",
     date: "08.07.2026",
     image: slide1Image,
   },
@@ -155,6 +153,59 @@ const CERTIFICATIONS = [
 
 const referencesBg = { url: referencesBgImage };
 
+/* ----------------------------- Video Banner ----------------------------- */
+
+function VideoBanner() {
+  return (
+    <section className="relative w-screen h-screen ml-[calc(-50vw+50%)] overflow-hidden">
+      {/* Video background */}
+      <video
+        src={presentationVideo}
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 h-full w-full object-cover opacity-60"
+      />
+      {/* Overlay for readability */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/40" />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-[#e0141c]/5 rounded-full blur-3xl" />
+
+      <div className="absolute inset-0 flex items-center justify-start">
+        <div className="w-full px-6 md:px-12">
+          <div className="max-w-4xl mx-0">
+            {/* Left accent border */}
+            <div className="flex gap-8 items-stretch">
+              <div className="w-1 bg-gradient-to-b from-[#e0141c] to-[#e0141c]/30 flex-shrink-0" />
+              <div>
+                <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight mb-6">
+                  L'exigence à chaque étape
+                </h2>
+                <p className="text-lg md:text-xl text-white/90 font-medium leading-relaxed mb-8 max-w-2xl">
+                  Découvrez nos processus de bout en bout, garantissant la qualité, la précision et la sécurité de chaque intervention industrielle.
+                </p>
+
+                {/* Visual emphasis elements */}
+                <div className="flex flex-wrap gap-4">
+                  <div className="px-4 py-2 bg-[#e0141c]/10 border border-[#e0141c]/30 backdrop-blur-sm">
+                    <p className="text-sm font-semibold text-[#e0141c]">Qualité Certifiée</p>
+                  </div>
+                  <div className="px-4 py-2 bg-white/5 border border-white/10 backdrop-blur-sm">
+                    <p className="text-sm font-semibold text-white/70">Précision Industrielle</p>
+                  </div>
+                  <div className="px-4 py-2 bg-white/5 border border-white/10 backdrop-blur-sm">
+                    <p className="text-sm font-semibold text-white/70">Sécurité Garantie</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 /* -------------------------------------------------------------------------- */
 
 function Index() {
@@ -192,7 +243,10 @@ function SiteHeader() {
   }, []);
 
   return (
-    <header
+    <motion.header
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${scrolled ? "bg-black/85 backdrop-blur-xl" : "bg-transparent"
         }`}
     >
@@ -315,7 +369,7 @@ function SiteHeader() {
           ))}
         </ul>
       </div>
-    </header>
+    </motion.header>
   );
 }
 
@@ -350,45 +404,73 @@ function StatCard({
   const num = useCountUp(parseInt(value, 10), 1600, 400 + delay);
   return (
     <div
-      className="stat-card group relative flex flex-col justify-center gap-1.5 px-8 py-4 cursor-default select-none"
+      className="stat-card rounded-[1.75rem] border border-white/10 bg-black/25 p-4 transition duration-300 hover:-translate-y-0.5 hover:border-[#e0141c]/30"
       style={{ animationDelay: `${delay}ms` }}
     >
-      {/* Red top accent line */}
-      <span className="stat-accent absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#e0141c] to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-
-      {/* Icon + label row */}
-      <div className="flex items-center gap-2">
-        <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white/8 text-[#e0141c]">
+      <div className="flex items-center gap-3">
+        <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#e0141c]/15 text-[#e0141c]">
           {icon}
         </span>
-        <span className="text-[9px] font-bold uppercase tracking-[0.18em] text-white/35 transition-colors duration-200 group-hover:text-white/60">
+        <p className="text-[10px] font-semibold uppercase tracking-[0.25em] text-white/60">
           {label}
-        </span>
+        </p>
       </div>
 
-      {/* Number */}
-      <div className="flex items-baseline gap-0.5" style={{ fontFamily: "var(--font-display)" }}>
-        <span
-          className="text-[2.2rem] font-black leading-none text-white transition-colors duration-200 group-hover:text-[#e0141c]"
-        >
-          {num}
-        </span>
+      <div className="mt-4 flex items-baseline gap-2" style={{ fontFamily: "var(--font-display)" }}>
+        <span className="text-[2.4rem] font-black leading-none text-white">{num}</span>
         <span className="text-xl font-black text-[#e0141c]">{suffix}</span>
       </div>
-
-      {/* Right divider (except last) */}
-      <span className="stat-divider absolute right-0 inset-y-3 w-px bg-white/8" />
 
       <style>{`
         .stat-card {
           animation: statIn 0.7s cubic-bezier(0.16,1,0.3,1) both;
         }
         @keyframes statIn {
-          from { opacity: 0; transform: translateY(14px); }
+          from { opacity: 0; transform: translateY(10px); }
           to   { opacity: 1; transform: translateY(0); }
         }
-        .stat-card:last-child .stat-divider { display: none; }
       `}</style>
+    </div>
+  );
+}
+
+/* ----------------------------- Bottom Stats Bar ----------------------------- */
+
+function BottomStatsBar() {
+  const stats = [
+    { value: "250+", title: "Clients", subtitle: "satisfaits" },
+    { value: "120+", title: "Projets", subtitle: "réalisés" },
+    { value: "15+", title: "Années", subtitle: "d'expérience" },
+    { value: "98%", title: "Taux", subtitle: "de satisfaction" },
+  ];
+
+  return (
+    <div className="w-full border-t border-white/10 bg-black/70 backdrop-blur-xl hidden md:block z-20 relative">
+      <div className="wrap">
+        <div className="grid grid-cols-4 divide-x divide-white/10">
+          {stats.map((stat, i) => (
+            <div key={i} className="group relative py-6 px-4 lg:px-8 flex flex-col xl:flex-row xl:items-center gap-2 xl:gap-6 overflow-hidden">
+              {/* Subtle hover background sweep */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#e0141c]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none -translate-x-full group-hover:translate-x-full ease-in-out" />
+
+              {/* Top Accent Line */}
+              <div className="absolute top-0 left-0 right-0 h-[2px] bg-[#e0141c] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+
+              <div className="text-4xl lg:text-5xl font-black text-white tracking-tighter drop-shadow-lg transition-transform duration-500 group-hover:-translate-y-1">
+                {stat.value}
+              </div>
+              <div className="flex-1">
+                <div className="text-[10px] lg:text-[11px] font-bold uppercase tracking-[0.2em] text-white/50 group-hover:text-[#e0141c] transition-colors duration-300">
+                  {stat.title}
+                </div>
+                <div className="text-xs lg:text-sm font-medium text-white/80 group-hover:text-white transition-colors duration-300">
+                  {stat.subtitle}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
@@ -397,38 +479,15 @@ function StatCard({
 
 function Hero() {
   const [i, setI] = useState(0);
-  const [videoEnded, setVideoEnded] = useState(false);
-  const [progress, setProgress] = useState(0);
   const total = HERO_SLIDES.length;
-  const SLIDE_DURATION = 6500;
-
-  const go = useCallback(
-    (dir: 1 | -1) => {
-      setI((p) => (p + dir + total) % total);
-      setProgress(0);
-    },
-    [total],
-  );
+  const SLIDE_DURATION = 5000;
 
   useEffect(() => {
-    if (!videoEnded) return;
-    setProgress(0);
-    const startTime = Date.now();
-    const raf = { id: 0 };
-    const tick = () => {
-      const elapsed = Date.now() - startTime;
-      const pct = Math.min((elapsed / SLIDE_DURATION) * 100, 100);
-      setProgress(pct);
-      if (pct < 100) {
-        raf.id = requestAnimationFrame(tick);
-      } else {
-        setI((p) => (p + 1) % total);
-        setProgress(0);
-      }
-    };
-    raf.id = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf.id);
-  }, [i, total, videoEnded]);
+    const timeout = window.setTimeout(() => {
+      setI((p) => (p + 1) % total);
+    }, SLIDE_DURATION);
+    return () => window.clearTimeout(timeout);
+  }, [i, total]);
 
   return (
     <section
@@ -438,25 +497,21 @@ function Hero() {
       {/* ── Grain texture overlay ── */}
       <div className="hero-grain" aria-hidden="true" />
 
-      {/* ── Video ── */}
-      <video
-        src={heroVideo}
-        className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${videoEnded ? "opacity-0 pointer-events-none" : "opacity-100"
-          }`}
-        autoPlay
-        muted
-        playsInline
-        onEnded={() => setVideoEnded(true)}
-      />
-
-      {/* ── Slide images ── */}
+      {/* ── Background Images ── */}
       {HERO_SLIDES.map((s, idx) => (
-        <img
+        <motion.img
           key={s.title}
           src={s.image}
           alt=""
-          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-[1100ms] ${videoEnded && idx === i ? "opacity-100" : "opacity-0"
-            }`}
+          initial={idx === 0 ? { y: 40, scale: 1.05, opacity: 0 } : { opacity: 0 }}
+          animate={{ y: 0, scale: 1, opacity: idx === i ? 1 : 0 }}
+          transition={{
+            opacity: { duration: 1.1, ease: "easeInOut" },
+            y: { duration: 1.5, ease: "easeOut" },
+            scale: { duration: 1.5, ease: "easeOut" }
+          }}
+          className="absolute inset-0 h-full w-full object-cover"
+          style={{ zIndex: idx === i ? 10 : 0 }}
           loading={idx === 0 ? "eager" : "lazy"}
         />
       ))}
@@ -468,147 +523,79 @@ function Hero() {
       {/* ── Red diagonal accent bar ── */}
       <div className="hero-red-bar" aria-hidden="true" />
 
-      {/* ── Vertical side label ── */}
-      <div className="absolute right-8 top-1/2 z-20 hidden -translate-y-1/2 lg:flex flex-col items-center gap-4">
-        <div
-          className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/30"
-          style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
-        >
-          U2I Process Group · Tunisie
-        </div>
-        <div className="h-16 w-px bg-gradient-to-b from-transparent via-white/20 to-transparent" />
-      </div>
-
       {/* ── Main content ── */}
-      <div className="wrap relative z-10 flex h-full flex-col justify-center">
-        <div key={i} className="max-w-3xl hero-content">
-
-          {/* Category chip */}
-          <div className="hero-chip mb-6 flex items-center gap-3">
-            <span className="block h-px w-8 bg-[#e0141c]" />
-            <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#e0141c]">
-              {HERO_SLIDES[i].label}
-            </span>
-          </div>
-
-          {/* Heading */}
-          <h1
-            className="hero-title mb-8 text-white"
+      <div className="wrap relative z-10 flex h-full items-center justify-between">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+          className="max-w-3xl"
+        >
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+            className="mb-8 text-white"
             style={{
-              fontSize: "clamp(2.6rem, 6.5vw, 5rem)",
-              lineHeight: 1.02,
+              fontSize: "clamp(3rem, 7vw, 5.8rem)",
+              lineHeight: 1.05,
               fontWeight: 800,
               letterSpacing: "-0.025em",
             }}
           >
-            {HERO_SLIDES[i].title}
-          </h1>
+            Pourquoi la <span className="text-[#e0141c]">précision</span><br />
+            continue de guider l'ambition de<br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/60">Groupe Univers Inox</span>
+          </motion.h1>
 
-          {/* Date + CTA */}
-          <div className="hero-cta flex items-center gap-5">
-            <span className="rounded-sm bg-white/10 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-white/70 backdrop-blur">
-              {HERO_SLIDES[i].date}
-            </span>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.8 }}
+            className="flex flex-col sm:flex-row sm:items-center gap-5"
+          >
             <a
               href="#responsabilité"
-              className="group flex items-center gap-2 text-sm font-bold text-white transition hover:text-[#e0141c]"
+              className="group inline-flex items-center gap-2 text-sm font-bold text-white transition hover:text-[#e0141c]"
             >
               Découvrir
               <span className="grid h-10 w-10 place-items-center rounded-full border border-white/30 transition-all duration-300 group-hover:border-[#e0141c] group-hover:bg-[#e0141c]">
                 <ArrowUpRight className="h-4 w-4" />
               </span>
             </a>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
 
-      {/* ── Bottom bar: stats + controls ── */}
-      <div className="absolute inset-x-0 bottom-0 z-20 border-t border-white/[0.08] bg-black/40 backdrop-blur-sm">
-        <div className="wrap flex items-stretch">
-          {/* Stats */}
-          <div className="hidden md:flex mr-auto">
-            {[
-              {
-                value: "10", suffix: "+", label: "Années d'expérience",
-                icon: (
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" />
-                  </svg>
-                ),
-              },
-              {
-                value: "200", suffix: "+", label: "Projets réalisés",
-                icon: (
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" />
-                  </svg>
-                ),
-              },
-              {
-                value: "3", suffix: "", label: "Secteurs clés",
-                icon: (
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M12 2L2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5" /><path d="M2 12l10 5 10-5" />
-                  </svg>
-                ),
-              },
-            ].map((s, idx) => (
-              <StatCard key={s.label} value={s.value} suffix={s.suffix} label={s.label} icon={s.icon} delay={idx * 120} />
+      {/* ── Bottom Section (Marquee + Stats) ── */}
+      <div className="absolute inset-x-0 bottom-0 z-20 flex flex-col">
+
+        {/* Partner Marquee */}
+        <div className="border-t border-white/[0.05] py-4 overflow-hidden">
+          <div className="flex whitespace-nowrap animate-hero-marquee">
+            {[...PARTNER_LOGOS, ...PARTNER_LOGOS, ...PARTNER_LOGOS, ...PARTNER_LOGOS].map((logo, index) => (
+              <div
+                key={index}
+                className="flex items-center justify-center mx-8 sm:mx-12 lg:mx-16 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+              >
+                <img src={logo.image} alt={logo.title} className="h-8 md:h-10 w-auto object-contain" />
+              </div>
             ))}
           </div>
-
-          {/* Slide progress + arrows */}
-          <div className="flex items-center gap-6 py-4 md:py-0 ml-auto md:ml-0">
-            <div className="flex items-center gap-4">
-              {HERO_SLIDES.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => { setI(idx); setProgress(0); }}
-                  aria-label={`Slide ${idx + 1}`}
-                  className="relative h-0.5 rounded-full bg-white/20 overflow-hidden transition-all duration-300"
-                  style={{ width: idx === i ? 64 : 24 }}
-                >
-                  {idx === i && (
-                    <span
-                      className="absolute inset-y-0 left-0 bg-[#e0141c] rounded-full"
-                      style={{ width: `${progress}%`, transition: "width 0.1s linear" }}
-                    />
-                  )}
-                </button>
-              ))}
-              <span className="text-xs font-bold text-white/40">
-                {String(i + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
-              </span>
-            </div>
-
-            <div className="flex divide-x divide-white/10 border-l border-white/10">
-              <button
-                onClick={() => go(-1)}
-                aria-label="Précédent"
-                className="grid h-14 w-14 place-items-center text-white/60 transition hover:bg-white/10 hover:text-white"
-              >
-                <ChevronLeft className="h-5 w-5" />
-              </button>
-              <button
-                onClick={() => go(1)}
-                aria-label="Suivant"
-                className="grid h-14 w-14 place-items-center text-white/60 transition hover:bg-white/10 hover:text-white"
-              >
-                <ChevronRight className="h-5 w-5" />
-              </button>
-            </div>
-          </div>
         </div>
-      </div>
 
-      {/* ── Animated scroll indicator ── */}
-      <div className="absolute left-1/2 bottom-24 z-20 hidden -translate-x-1/2 flex-col items-center gap-2 md:flex">
-        <div className="h-10 w-px overflow-hidden bg-white/10">
-          <div className="hero-scroll-line h-full w-full bg-white/50" />
-        </div>
+        <BottomStatsBar />
+
       </div>
 
       <style>{`
+        .animate-hero-marquee {
+          animation: heroMarquee 30s linear infinite;
+        }
+        @keyframes heroMarquee {
+          from { transform: translateX(0); }
+          to { transform: translateX(-25%); }
+        }
         /* Grain noise overlay */
         .hero-grain {
           position: absolute; inset: 0; z-index: 5; pointer-events: none;
@@ -626,26 +613,6 @@ function Hero() {
           opacity: 0.45;
           transform: skewX(-8deg);
         }
-
-        /* Staggered content entrance animations */
-        .hero-content { animation: heroIn 1s cubic-bezier(0.16,1,0.3,1) both; }
-        .hero-chip    { animation: heroIn 0.7s 0.15s cubic-bezier(0.16,1,0.3,1) both; }
-        .hero-title   { animation: heroIn 0.9s 0.28s cubic-bezier(0.16,1,0.3,1) both; }
-        .hero-cta     { animation: heroIn 0.8s 0.5s cubic-bezier(0.16,1,0.3,1) both; }
-
-        @keyframes heroIn {
-          from { opacity: 0; transform: translateY(32px) skewY(1.5deg); }
-          to   { opacity: 1; transform: translateY(0) skewY(0deg); }
-        }
-
-        /* Scroll line drop animation */
-        .hero-scroll-line { animation: scrollDrop 2.2s ease-in-out infinite; }
-        @keyframes scrollDrop {
-          0%   { transform: translateY(-100%); opacity: 0; }
-          20%  { opacity: 1; }
-          80%  { opacity: 1; }
-          100% { transform: translateY(200%); opacity: 0; }
-        }
       `}</style>
     </section>
   );
@@ -655,24 +622,63 @@ function Hero() {
 /* ------------------------------ Presentation ----------------------------- */
 
 function Presentation() {
+  const [isInView, setIsInView] = useState(false);
+  const desktopVideoRef = useRef<HTMLVideoElement | null>(null);
+  const mobileVideoRef = useRef<HTMLVideoElement | null>(null);
+
+  useEffect(() => {
+    const section = document.getElementById("presentation");
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        setIsInView(entry?.isIntersecting ?? false);
+      },
+      { threshold: 0.2, rootMargin: "0px 0px -10% 0px" },
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    [desktopVideoRef.current, mobileVideoRef.current].forEach((video) => {
+      if (!video) return;
+
+      if (isInView) {
+        video.currentTime = 0;
+        void video.play().catch(() => undefined);
+      } else {
+        video.pause();
+      }
+    });
+  }, [isInView]);
+
   return (
     <section id="presentation" className="section-paper overflow-hidden relative">
       <div className="wrap">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
           {/* Image Side */}
-          <div className="relative group mx-auto w-full max-w-md lg:max-w-none hidden lg:block">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="relative group mx-auto w-full max-w-md lg:max-w-none hidden lg:block"
+          >
             {/* Decorative background blob */}
             <div className="absolute -inset-4 bg-gradient-to-r from-[#e0141c]/20 to-transparent rounded-[2rem] blur-2xl opacity-50 transition-opacity duration-500 group-hover:opacity-70" />
 
-            <div className="relative rounded-[2rem] overflow-hidden shadow-2xl transition-transform duration-500 group-hover:scale-[1.02]">
+            <div className="relative overflow-hidden shadow-2xl transition-transform duration-500 group-hover:scale-[1.02]">
               <img
-                src={slide1Image}
+                src={presentationImage}
                 alt="Univers Inox Industriel"
                 className="w-full h-auto object-cover aspect-[4/5]"
               />
               {/* Subtle overlay */}
-              <div className="absolute inset-0 border-[3px] border-white/20 rounded-[2rem] pointer-events-none mix-blend-overlay" />
+              <div className="absolute inset-0 border-[3px] border-white/20 pointer-events-none mix-blend-overlay" />
             </div>
 
             {/* Floating badge */}
@@ -687,10 +693,16 @@ function Presentation() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Text Side */}
-          <div className="lg:py-10 mt-12 lg:mt-0">
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="lg:py-10 mt-12 lg:mt-0"
+          >
             <div className="mb-4 flex items-center gap-3">
               <span className="block h-px w-8 lg:w-10 bg-[#e0141c]" />
               <h3 className="text-xs lg:text-sm font-bold uppercase tracking-widest text-[#e0141c] italic">
@@ -715,13 +727,17 @@ function Presentation() {
 
             <div className="mt-8 mb-8 lg:hidden">
               <div className="relative mx-auto w-full max-w-sm">
-                <div className="relative rounded-[1.5rem] overflow-hidden shadow-xl">
-                  <img
-                    src={slide1Image}
-                    alt="Univers Inox Industriel"
+                <div className="relative overflow-hidden shadow-xl">
+                  <video
+                    ref={mobileVideoRef}
+                    src={presentationVideo}
+                    muted
+                    playsInline
+                    loop
+                    preload="metadata"
                     className="w-full h-auto object-cover aspect-[4/5]"
                   />
-                  <div className="absolute inset-0 border-[3px] border-white/20 rounded-[1.5rem] pointer-events-none mix-blend-overlay" />
+                  <div className="absolute inset-0 border-[3px] border-white/20 pointer-events-none mix-blend-overlay" />
                 </div>
 
                 <div className="absolute bottom-0 sm:-bottom-4 right-0 sm:-right-4 bg-white p-4 rounded-2xl shadow-lg border border-black/5">
@@ -746,7 +762,7 @@ function Presentation() {
                 Télécharger brochure
               </a>
             </div>
-          </div>
+          </motion.div>
 
         </div>
       </div>
@@ -768,63 +784,116 @@ function Presentation() {
 
 function Sectors() {
   return (
-    <section id="secteurs" className="section-red relative">
-      <img
-        src={expertiseBgImage}
-        alt=""
-        className="absolute -bottom-1 -right-30 h-auto w-64 md:w-96 lg:w-[1000px] object-contain opacity-30 pointer-events-none"
-        style={{ mixBlendMode: 'plus-lighter' }}
-      />
-      <img
-        src={expertiseBgImage2}
-        alt=""
-        className="absolute -top-10 -left-10 h-auto w-64 md:w-96 lg:w-[1000px] object-contain opacity-30 pointer-events-none"
-        style={{ mixBlendMode: 'plus-lighter' }}
-      />
+    <section id="secteurs" className="bg-white relative py-24 overflow-hidden">
+      {/* Decorative White Theme Elements */}
+      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-neutral-100/50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#e0141c]/[0.03] rounded-full blur-3xl translate-y-1/3 -translate-x-1/3 pointer-events-none" />
+
       <div className="wrap relative z-10">
-        <h2
-          className="mb-16 text-center"
-          style={{ fontSize: "clamp(2rem, 5vw, 3rem)" }}
+
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col items-center text-center mb-16"
         >
-          Nos domaines d'expertise
-        </h2>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {SECTORS.map((s, i) => (
-            <a
-              key={s.title}
-              href="#"
-              className={`group relative block overflow-hidden rounded-2xl bg-neutral-800 ${i === 0 ? "lg:col-span-2 lg:row-span-2" : ""
-                }`}
-              style={{ aspectRatio: i === 0 ? "16 / 12" : "4 / 3" }}
-            >
-              <img
-                src={s.image}
-                alt={s.title}
-                loading="lazy"
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
-              <span className="absolute left-6 top-6 rounded bg-white/15 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.12em] text-white backdrop-blur">
-                {s.tag}
+          <div className="mb-4 flex items-center gap-3">
+            <span className="block h-px w-8 bg-[#e0141c]" />
+            <h3 className="text-sm font-bold uppercase tracking-widest text-[#e0141c] italic">
+              Savoir-Faire
+            </h3>
+            <span className="block h-px w-8 bg-[#e0141c]" />
+          </div>
+          <h2 className="text-neutral-950 font-black mb-6" style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}>
+            Nos Domaines d'Expertise
+          </h2>
+          <p className="max-w-2xl text-neutral-500 text-lg font-medium">
+            Découvrez nos solutions industrielles adaptées à chaque secteur, alliant haute précision, respect des normes et innovation constante.
+          </p>
+        </motion.div>
+
+        {/* Bento Grid */}
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={{ show: { transition: { staggerChildren: 0.1 } } }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+        >
+
+          {/* Main Video Block (Spans 2 columns & 2 rows on large screens) */}
+          <motion.div
+            variants={{ hidden: { opacity: 0, y: 50 }, show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } } }}
+            className="relative overflow-hidden rounded-[2.5rem] bg-black shadow-2xl group md:col-span-2 md:row-span-2 flex flex-col justify-end min-h-[400px] lg:min-h-0"
+          >
+            <video
+              src={u2iUpdatedVideo}
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover opacity-90 transition-transform duration-1000 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
+
+            <div className="absolute top-6 left-6 flex items-center gap-2">
+              <span className="relative flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#e0141c] opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-[#e0141c]"></span>
               </span>
-              <div className="absolute inset-x-6 bottom-6 flex items-end justify-between text-white">
-                <h3 className="text-2xl font-bold sm:text-3xl">{s.title}</h3>
-                <span className="icon-btn shrink-0">
-                  <ArrowUpRight className="h-4 w-4" />
-                </span>
+              <span className="text-white text-[11px] font-bold uppercase tracking-wider bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10">
+                U2I en action
+              </span>
+            </div>
+
+            <div className="relative z-10 p-8 md:p-12">
+              <h3 className="text-white font-black text-3xl md:text-5xl mb-4 leading-tight">
+                L'excellence <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/50">industrielle</span>
+              </h3>
+              <div className="flex items-center gap-4">
+                <a href="/secteurs" className="inline-flex items-center gap-2 bg-[#e0141c] text-white px-6 py-3 rounded-full font-bold text-sm transition-all hover:bg-[#c01018] hover:shadow-lg hover:-translate-y-0.5">
+                  Voir nos réalisations
+                  <ArrowUpRight className="w-4 h-4" />
+                </a>
               </div>
-            </a>
+            </div>
+          </motion.div>
+
+          {/* Sector Cards */}
+          {SECTORS.map((s) => (
+            <motion.a
+              variants={{ hidden: { opacity: 0, scale: 0.95 }, show: { opacity: 1, scale: 1, transition: { duration: 0.5 } } }}
+              key={s.title}
+              href="/secteurs"
+              className="group relative overflow-hidden rounded-[2rem] bg-white border border-neutral-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-500 flex flex-col p-2 h-[300px] sm:h-[320px]"
+            >
+              <div className="relative w-full flex-1 rounded-[1.5rem] overflow-hidden shrink-0">
+                <img
+                  src={s.image}
+                  alt={s.title}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-black/5 group-hover:bg-transparent transition-colors" />
+                <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-full text-[10px] font-black text-neutral-900 uppercase tracking-widest shadow-sm">
+                  {s.tag}
+                </div>
+              </div>
+
+              <div className="p-4 sm:p-5 flex items-center justify-between shrink-0">
+                <h4 className="text-neutral-900 font-bold text-[1.15rem] leading-tight transition-colors group-hover:text-[#e0141c]">
+                  {s.title}
+                </h4>
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-neutral-50 border border-neutral-100 text-neutral-400 flex items-center justify-center shrink-0 transition-all duration-500 group-hover:bg-[#e0141c] group-hover:border-[#e0141c] group-hover:text-white group-hover:shadow-md ml-2">
+                  <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-500 group-hover:rotate-45" />
+                </div>
+              </div>
+            </motion.a>
           ))}
-        </div>
-        
-        <div className="mt-14 flex justify-center">
-          <a href="/secteurs" className="group flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold text-[#e0141c] transition-all hover:bg-neutral-100 hover:shadow-lg">
-            Voir tous les secteurs
-            <span className="grid h-8 w-8 place-items-center rounded-full bg-[#e0141c] text-white transition-transform group-hover:translate-x-1">
-              <ArrowUpRight className="h-4 w-4" />
-            </span>
-          </a>
-        </div>
+        </motion.div>
+
       </div>
     </section>
   );
@@ -838,7 +907,7 @@ function Equipments() {
       {/* Decorative background elements */}
       <div className="absolute top-0 right-0 -mr-40 -mt-40 w-96 h-96 rounded-full bg-[#e0141c]/10 blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 left-0 -ml-40 -mb-40 w-96 h-96 rounded-full bg-[#e0141c]/5 blur-[100px] pointer-events-none" />
-      
+
       <div className="wrap mb-16 relative z-10">
         <div className="flex flex-col items-center text-center">
           <div className="mb-4 flex items-center gap-3">
@@ -856,11 +925,18 @@ function Equipments() {
           </p>
         </div>
       </div>
-      
+
       <div className="wrap relative z-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={{ show: { transition: { staggerChildren: 0.15 } } }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+        >
           {EQUIPMENTS.map((eq, i) => (
-            <article
+            <motion.article
+              variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } } }}
               key={i}
               className="group relative overflow-hidden rounded-2xl bg-neutral-900 border border-white/10 transition-all duration-500 hover:-translate-y-2 hover:border-white/20 hover:shadow-[0_10px_40px_rgba(224,20,28,0.15)]"
               style={{ aspectRatio: "4/3" }}
@@ -872,7 +948,7 @@ function Equipments() {
                 className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110 group-hover:opacity-60"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-90 transition-opacity duration-500 group-hover:opacity-100" />
-              
+
               <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end">
                 <div className="transform md:translate-y-8 md:transition-transform md:duration-500 md:group-hover:translate-y-0">
                   <div className="w-10 h-10 mb-4 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 text-white group-hover:bg-[#e0141c] group-hover:border-[#e0141c] transition-colors duration-500">
@@ -888,13 +964,13 @@ function Equipments() {
                   </div>
                 </div>
               </div>
-              
+
               {/* Highlight line on hover */}
               <div className="absolute bottom-0 left-0 h-1 bg-[#e0141c] w-0 transition-all duration-500 group-hover:w-full" />
-            </article>
+            </motion.article>
           ))}
-        </div>
-        
+        </motion.div>
+
         <div className="mt-14 flex justify-center">
           <a href="/equipements" className="group flex items-center gap-2 rounded-full bg-[#e0141c] px-6 py-3 text-sm font-bold text-white transition-all hover:bg-[#c01118] hover:shadow-[0_0_20px_rgba(224,20,28,0.4)]">
             Voir tout notre parc machines
@@ -921,7 +997,13 @@ function References() {
       />
 
       <div className="relative wrap">
-        <div className="mx-auto max-w-4xl text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mx-auto max-w-4xl text-center"
+        >
           <p className="mb-4 text-sm uppercase tracking-[0.28em] text-white/60">
             Références</p>
           <div className="flex justify-center mb-6">
@@ -938,7 +1020,7 @@ function References() {
           >
             Partenaire officiel AXXAIR depuis 2015
           </h2>
-        </div>
+        </motion.div>
 
         <div className="mt-14 text-center">
           <h3 className="mb-6 text-xl font-semibold uppercase tracking-[0.22em] text-white/80">
@@ -978,11 +1060,18 @@ function PartnersMarquee() {
         <h3 className="mb-10 text-center text-sm font-semibold uppercase tracking-[0.2em] text-black/40">
           Certifications
         </h3>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          variants={{ show: { transition: { staggerChildren: 0.1 } } }}
+          className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4"
+        >
           {CERTIFICATIONS.map((cert) => (
-            <div
+            <motion.div
+              variants={{ hidden: { opacity: 0, scale: 0.95 }, show: { opacity: 1, scale: 1, transition: { duration: 0.5 } } }}
               key={cert.title}
-              className="overflow-hidden rounded-[2rem] bg-white shadow-sm"
+              className="overflow-hidden bg-white shadow-sm"
             >
               <img
                 src={cert.image}
@@ -990,10 +1079,10 @@ function PartnersMarquee() {
                 loading="lazy"
                 className="h-64 w-full object-cover"
               />
-            </div>
+            </motion.div>
           ))}
-        </div>
-        
+        </motion.div>
+
         <div className="mt-14 flex justify-center">
           <a href="/references" className="group flex items-center gap-2 rounded-full bg-black px-6 py-3 text-sm font-bold text-white transition-all hover:bg-neutral-800 hover:shadow-lg">
             Découvrir toutes nos références
@@ -1018,7 +1107,7 @@ function SiteFooter() {
             U2I Process Group
           </div>
           <div className="flex flex-wrap gap-6 text-sm font-bold">
-            {["Qui sommes nous", "Secteurs", "Equipments", "References","Blog", "Contact"].map(
+            {["Qui sommes nous", "Secteurs", "Equipments", "References", "Blog", "Contact"].map(
               (l) => (
                 <a key={l} href="#" className="hover:text-primary">
                   {l}
