@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 
 import contactBgImage from "@/assets/about-workshop.jpg";
+import emailIcon from "@/assets/partners/email.png";
 
 export const Route = createFileRoute("/contact")({
   component: ContactPage,
@@ -34,7 +35,7 @@ function ContactPage() {
       <div className="bg-[#111] border-b border-white/10 py-3">
         <div className="wrap flex items-center gap-2 text-sm text-white/50">
           <Link to="/" className="hover:text-white transition-colors flex items-center gap-1">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" /></svg>
             Accueil
           </Link>
           <span className="text-white/20">›</span>
@@ -45,7 +46,7 @@ function ContactPage() {
       <main className="py-20 bg-black">
         <div className="wrap">
           <div className="grid lg:grid-cols-2 gap-16">
-            
+
             {/* Informations de contact */}
             <div>
               <div className="flex items-center gap-3 mb-6">
@@ -58,7 +59,7 @@ function ContactPage() {
               <p className="text-white/60 mb-12 text-lg">
                 Vous avez un projet en tuyauterie industrielle ou soudure orbitale ? Notre équipe d'experts est à votre disposition pour vous accompagner de A à Z.
               </p>
-              
+
               <div className="space-y-8">
                 <div className="flex items-start gap-6">
                   <div className="flex-shrink-0 w-14 h-14 bg-white/5 border border-white/10 rounded-full flex items-center justify-center text-[#e0141c]">
@@ -78,7 +79,9 @@ function ContactPage() {
                   <div>
                     <h3 className="text-lg font-bold text-white mb-1">Email</h3>
                     <p className="text-white/60 mb-2">Notre équipe vous répondra sous 24h</p>
-                    <a href="mailto:u2i@u2iprocess.com" className="text-xl font-bold hover:text-[#e0141c] transition-colors">u2i@u2iprocess.com</a>
+                    <a href="mailto:u2i@u2iprocess.com" className="inline-block hover:opacity-90 transition-opacity">
+                      <img src={emailIcon} alt="Email" className="h-4 w-auto object-contain inline-block" />
+                    </a>
                   </div>
                 </div>
 
@@ -101,27 +104,27 @@ function ContactPage() {
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label htmlFor="firstName" className="text-sm font-semibold text-white/70">Prénom</label>
-                    <input type="text" id="firstName" className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#e0141c] transition-colors" placeholder="Jean" />
+                    <input type="text" id="firstName" className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#e0141c] transition-colors" />
                   </div>
                   <div className="space-y-2">
                     <label htmlFor="lastName" className="text-sm font-semibold text-white/70">Nom</label>
-                    <input type="text" id="lastName" className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#e0141c] transition-colors" placeholder="Dupont" />
+                    <input type="text" id="lastName" className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#e0141c] transition-colors" />
                   </div>
                 </div>
-                
+
                 <div className="space-y-2">
                   <label htmlFor="email" className="text-sm font-semibold text-white/70">Email</label>
-                  <input type="email" id="email" className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#e0141c] transition-colors" placeholder="jean.dupont@entreprise.com" />
+                  <input type="email" id="email" className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#e0141c] transition-colors" />
                 </div>
-                
+
                 <div className="space-y-2">
                   <label htmlFor="subject" className="text-sm font-semibold text-white/70">Sujet</label>
-                  <input type="text" id="subject" className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#e0141c] transition-colors" placeholder="Demande de devis" />
+                  <input type="text" id="subject" className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#e0141c] transition-colors" />
                 </div>
 
                 <div className="space-y-2">
                   <label htmlFor="message" className="text-sm font-semibold text-white/70">Message</label>
-                  <textarea id="message" rows={5} className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#e0141c] transition-colors resize-none" placeholder="Comment pouvons-nous vous aider ?"></textarea>
+                  <textarea id="message" rows={5} className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#e0141c] transition-colors resize-none"></textarea>
                 </div>
 
                 <button type="submit" className="w-full bg-[#e0141c] hover:bg-[#c01118] text-white font-bold rounded-xl px-6 py-4 transition-colors flex items-center justify-center gap-2 group">
@@ -130,6 +133,19 @@ function ContactPage() {
                 </button>
               </form>
             </div>
+          </div>
+
+          {/* Carte / Map */}
+          <div className="mt-20 overflow-hidden rounded-[2rem] border border-white/10 shadow-2xl h-[450px] bg-[#111]">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d25864.77929716165!2d10.5775104!3d35.8711296!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12fd8a3269a9e77b%3A0xe2adfdb4979a6bdc!2sUnivers%20Inox%20Industriel%20U2I!5e0!3m2!1sfr!2stn!4v1784619191195!5m2!1sfr!2stn"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen={false}
+              loading="lazy"
+              referrerPolicy="strict-origin-when-cross-origin"
+            />
           </div>
         </div>
       </main>

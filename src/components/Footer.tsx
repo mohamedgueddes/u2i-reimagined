@@ -1,7 +1,8 @@
-﻿import { Facebook, Instagram, Linkedin, Mail, Phone, Youtube } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Mail, Phone, Youtube } from "lucide-react";
 import logoImage from "@/assets/logo-u2i-removebg-preview.png";
 import atelierImage from "@/assets/about-workshop.jpg";
 import pharmaImage from "@/assets/hero-pharma.jpg";
+import emailIcon from "@/assets/partners/email.png";
 
 const pharma = { url: pharmaImage };
 const atelier = { url: atelierImage };
@@ -112,9 +113,10 @@ export function Footer() {
             )}
           </div>
           <div className="flex items-center gap-3">
-            <span className="mr-2 text-xs text-white/50">
-              +216 50 191 004 · u2i@u2iprocess.com
-            </span>
+            <span className="mr-2 text-xs text-white/50">+216 50 191 004</span>
+            <a href="mailto:u2i@u2iprocess.com" className="inline-block hover:opacity-90 transition-opacity">
+              <img src={emailIcon} alt="Email" className="h-5 w-auto object-contain inline-block" />
+            </a>
             {[Facebook, Instagram, Linkedin, Youtube].map((Icon, i) => (
               <a
                 key={i}
@@ -132,7 +134,9 @@ export function Footer() {
           © {new Date().getFullYear()} U2I Process — Univers Inox Industriel · Akouda, Sousse — Tunisie
           <span className="ml-4 inline-flex items-center gap-2">
             <Phone className="inline h-3 w-3 text-primary" /> +216 50 191 004
-            <Mail className="ml-3 inline h-3 w-3 text-primary" /> u2i@u2iprocess.com
+            <a href="mailto:u2i@u2iprocess.com" className="ml-3 inline-block hover:opacity-90 transition-opacity">
+              <img src={emailIcon} alt="Email" className="h-4 w-auto object-contain inline-block" />
+            </a>
           </span>
         </div>
       </div>

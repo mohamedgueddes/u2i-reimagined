@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { Facebook, Linkedin, Mail, Menu, Phone, X, Youtube } from "lucide-react";
 import logoImage from "@/assets/logo-u2i-removebg-preview.png";
+import emailIcon from "@/assets/partners/email.png";
 
 const NAV_LINKS = [
   { label: "Accueil", href: "/" },
@@ -45,7 +46,9 @@ export function Navbar() {
             <span className="font-bold tracking-wider">+216 50 191 004</span>
             <span className="text-white/20 mx-1">|</span>
             <Mail className="h-3.5 w-3.5 ml-1 text-[#e0141c]" />
-            <span className="font-bold tracking-wider">u2i@u2iprocess.com</span>
+            <a href="mailto:u2i@u2iprocess.com" className="ml-2 inline-block hover:opacity-90 transition-opacity">
+              <img src={emailIcon} alt="Email" className="h-4 w-auto object-contain inline-block" />
+            </a>
             <span className="opacity-80 hidden sm:inline ml-2 border-l border-white/20 pl-4">
               Vous avez un nouveau projet ? N'hesitez pas a nous contacter !
             </span>
@@ -138,7 +141,7 @@ export function Navbar() {
           </a>
           <a href="mailto:u2i@u2iprocess.com" className="flex items-center gap-3 text-sm text-white/70 hover:text-white">
             <Mail className="h-4 w-4 text-[#e0141c]" />
-            u2i@u2iprocess.com
+            <img src={emailIcon} alt="Email" className="w-6 h-6 object-contain inline" />
           </a>
           <div className="flex gap-4 pt-2">
             <a href="#" aria-label="Facebook" className="text-white/50 hover:text-[#e0141c]"><Facebook className="h-5 w-5" /></a>

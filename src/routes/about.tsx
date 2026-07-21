@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Settings, Handshake, FileText, Zap } from "lucide-react";
 import workshopImage from "@/assets/about-workshop.jpg";
 import pharmaImage from "@/assets/hero-pharma.jpg";
 import weldingImage from "@/assets/hero-welding.jpg";
@@ -6,6 +7,7 @@ import presentationImage from "@/assets/presentation.jpg";
 import teamImage1 from "@/assets/IMG-20240214-WA0000.jpg";
 import teamImage2 from "@/assets/IMG-20260408-WA0067.jpg";
 import teamImage3 from "@/assets/IMG_2278.jpg";
+import emailIcon from "@/assets/partners/email.png";
 
 export const Route = createFileRoute("/about")({
   component: AboutPage,
@@ -33,7 +35,6 @@ function AboutPage() {
             <span className="text-[#e0141c]">Qui sommes-nous</span>
           </div>
           <div className="flex items-center gap-4 mb-4">
-            <span className="block h-px w-10 bg-[#e0141c]" />
             <span className="text-xs font-bold uppercase tracking-[0.28em] text-[#e0141c]">A propos</span>
           </div>
           <h1
@@ -49,7 +50,7 @@ function AboutPage() {
       <div className="bg-[#111] border-b border-white/10 py-3">
         <div className="wrap flex items-center gap-2 text-sm text-white/50">
           <a href="/" className="hover:text-white transition-colors flex items-center gap-1">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" /></svg>
             Accueil
           </a>
           <span className="text-white/20">›</span>
@@ -66,7 +67,6 @@ function AboutPage() {
             <div className="grid gap-12 lg:grid-cols-[1fr_1fr] items-center">
               <div>
                 <div className="flex items-center gap-3 mb-6">
-                  <span className="block h-px w-8 bg-[#e0141c]" />
                   <span className="text-xs font-bold uppercase tracking-[0.28em] text-[#e0141c]">Presentation generale</span>
                 </div>
                 <h2 className="text-neutral-900 mb-6" style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)" }}>
@@ -115,7 +115,6 @@ function AboutPage() {
               </div>
               <div>
                 <div className="flex items-center gap-3 mb-6">
-                  <span className="block h-px w-8 bg-[#e0141c]" />
                   <span className="text-xs font-bold uppercase tracking-[0.28em] text-[#e0141c]">Nos prestations</span>
                 </div>
                 <h2 className="text-white mb-8" style={{ fontSize: "clamp(1.6rem, 3vw, 2.2rem)" }}>
@@ -152,7 +151,6 @@ function AboutPage() {
           <div className="wrap">
             <div className="mb-12">
               <div className="flex items-center gap-3 mb-4">
-                <span className="block h-px w-8 bg-[#e0141c]" />
                 <span className="text-xs font-bold uppercase tracking-[0.28em] text-[#e0141c]">Equipe</span>
               </div>
               <h2 className="text-neutral-900 mb-6" style={{ fontSize: "clamp(1.6rem, 3vw, 2.2rem)" }}>
@@ -169,18 +167,21 @@ function AboutPage() {
                   Chaudronnerie et atelier d'equipements qualifies et parfaitement equipes, disposant d'un atelier de 1 000 m2 exclusivement mise aux normes en departement tolerie (decoupes laser, plieuse de derniere generation, stockage de tole a plat, tubes et roulage numerique), un departement soudure et un departement chaudronnerie.
                 </p>
 
-                <div className="mt-8 grid grid-cols-2 gap-6">
+                <div className="mt-10 flex flex-col gap-4">
                   {[
-                    { value: "7", label: "Charges d'affaires" },
-                    { value: "1000m²", label: "Atelier equipe" },
-                    { value: "10+", label: "Annees d'experience" },
-                    { value: "100%", label: "Qualite certifiee" },
-                  ].map((stat) => (
-                    <div key={stat.label} className="rounded-2xl bg-neutral-50 border border-neutral-200 p-6">
-                      <div className="text-3xl font-black text-[#e0141c] mb-1" style={{ fontFamily: "var(--font-display)" }}>
-                        {stat.value}
+                    { title: "Bureau d'études 3D", desc: "2 postes de conception et dessin industriel" },
+                    { title: "Laboratoires de pointe", desc: "Essais, mise au point et contrôle vidéo-endoscopique" },
+                    { title: "Infrastructures complètes", desc: "Atelier de 1 000 m² aux normes avec départements dédiés" },
+                    { title: "Départements spécialisés", desc: "Tôlerie, soudure et chaudronnerie équipés dernière génération" },
+                  ].map((item, idx) => (
+                    <div key={idx} className="flex items-start gap-4 rounded-2xl bg-white border border-slate-200 p-5 shadow-sm transition-all duration-300 hover:shadow-md hover:border-slate-300 hover:-translate-y-1">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-50 border border-slate-200 text-[#e0141c]">
+                        <span className="font-bold text-sm">{String(idx + 1).padStart(2, '0')}</span>
                       </div>
-                      <div className="text-sm font-semibold text-neutral-600">{stat.label}</div>
+                      <div>
+                        <h4 className="font-bold text-slate-900 mb-1">{item.title}</h4>
+                        <p className="text-sm text-slate-600 leading-relaxed">{item.desc}</p>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -210,7 +211,6 @@ function AboutPage() {
               </div>
               <div>
                 <div className="flex items-center gap-3 mb-6">
-                  <span className="block h-px w-8 bg-[#e0141c]" />
                   <span className="text-xs font-bold uppercase tracking-[0.28em] text-[#e0141c]">Qualite</span>
                 </div>
                 <h2 className="text-white mb-6" style={{ fontSize: "clamp(1.6rem, 3vw, 2.2rem)" }}>
@@ -239,50 +239,87 @@ function AboutPage() {
         </section>
 
         {/* ── Points forts / Nos atouts ── */}
-        <section className="section-red relative overflow-hidden">
+        <section className="relative overflow-hidden py-32 bg-[#050505]">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-[#e0141c]/10 rounded-full blur-[120px] pointer-events-none" />
+
           <div className="wrap relative z-10">
-            <div className="text-center mb-14">
+            <div className="text-center mb-20">
               <div className="flex items-center justify-center gap-3 mb-6">
-                <span className="block h-px w-8 bg-white/50" />
-                <span className="text-xs font-bold uppercase tracking-[0.28em] text-white/70">Nos atouts</span>
-                <span className="block h-px w-8 bg-white/50" />
+                <span className="inline-flex rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-[#e0141c]">
+                  Nos atouts
+                </span>
               </div>
-              <h2 className="text-white font-black" style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)" }}>
+              <h2 className="text-white font-black tracking-tight" style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)", lineHeight: 1.1 }}>
                 Pourquoi choisir U2I ?
               </h2>
+              <p className="mt-6 max-w-2xl mx-auto text-lg text-white/60">
+                Une combinaison unique d'expertise technique, de partenariats stratégiques et d'une rigueur absolue en matière de qualité.
+              </p>
             </div>
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {[
-                {
-                  icon: "🏭",
-                  title: "Expertise technique",
-                  text: "Specialiste de la tuyauterie inox et soudure orbitale depuis plus de 10 ans.",
-                },
-                {
-                  icon: "🤝",
-                  title: "Partenaire AXXAIR",
-                  text: "Distributeur officiel AXXAIR depuis 2015 — solution complete de soudure orbitale.",
-                },
-                {
-                  icon: "📋",
-                  title: "Documentation ISO",
-                  text: "Qualification IQ/OQ/PQ, documentation complete et traçabilite integree.",
-                },
-                {
-                  icon: "⚡",
-                  title: "Reactivite",
-                  text: "Intervention rapide sur site et en atelier, de la conception a la mise en service.",
-                },
-              ].map((item) => (
-                <div
-                  key={item.title}
-                  className="rounded-3xl bg-white/10 border border-white/20 p-8 backdrop-blur-sm hover:bg-white/20 transition-all duration-300"
-                >
-                  <div className="text-4xl mb-4">{item.icon}</div>
-                  <h3 className="text-xl font-black text-white mb-3">{item.title}</h3>
-                  <p className="text-sm text-white/75 leading-relaxed">{item.text}</p>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+              {/* Item 1: Wide */}
+              <div className="md:col-span-2 group relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/5 p-8 md:p-12 transition-all duration-500 hover:bg-white/10 hover:border-white/20">
+                <div className="absolute -right-8 -top-8 text-white/5 transition-transform duration-700 group-hover:scale-110 group-hover:text-white/10 group-hover:-rotate-12 pointer-events-none">
+                  <Settings strokeWidth={1} size={320} />
                 </div>
-              ))}
+                <div className="relative z-10 max-w-lg">
+                  <div className="mb-8 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 text-white shadow-inner backdrop-blur-md">
+                    <Settings className="h-7 w-7" />
+                  </div>
+                  <h3 className="mb-4 text-3xl font-black text-white">Expertise technique</h3>
+                  <p className="text-lg leading-relaxed text-white/70">
+                    Spécialiste de la tuyauterie inox et soudure orbitale depuis plus de 10 ans. Une maîtrise totale des procédés les plus exigeants pour l'industrie de pointe.
+                  </p>
+                </div>
+              </div>
+
+              {/* Item 2: Square (Accent) */}
+              <div className="group relative overflow-hidden rounded-[2.5rem] border border-transparent bg-[#e0141c] p-8 md:p-12 transition-all duration-500 hover:shadow-[0_0_60px_rgba(224,20,28,0.4)] hover:-translate-y-1">
+                <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                <div className="relative z-10 flex h-full flex-col justify-between">
+                  <div className="mb-8">
+                    <Handshake className="h-12 w-12 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="mb-3 text-2xl font-black text-white">Partenaire AXXAIR</h3>
+                    <p className="text-white/90 leading-relaxed">
+                      Distributeur officiel depuis 2015. La référence en solution complète de soudure orbitale.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Item 3: Square */}
+              <div className="group relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/5 p-8 md:p-12 transition-all duration-500 hover:bg-white/10 hover:border-white/20">
+                <div className="relative z-10 flex h-full flex-col justify-between">
+                  <div className="mb-8 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-[#e0141c]/20 text-[#e0141c] transition-colors duration-500 group-hover:bg-[#e0141c] group-hover:text-white">
+                    <FileText className="h-7 w-7" />
+                  </div>
+                  <div>
+                    <h3 className="mb-3 text-2xl font-black text-white">Traçabilité ISO</h3>
+                    <p className="text-white/70 leading-relaxed">
+                      Qualification IQ/OQ/PQ, documentation exhaustive et traçabilité intégrée pour chaque projet.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Item 4: Wide */}
+              <div className="md:col-span-2 group relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/5 p-8 md:p-12 transition-all duration-500 hover:bg-white/10 hover:border-white/20">
+                <div className="absolute -bottom-16 -right-8 text-white/5 transition-transform duration-700 group-hover:scale-110 group-hover:text-white/10 group-hover:rotate-12 pointer-events-none">
+                  <Zap strokeWidth={1} size={320} />
+                </div>
+                <div className="relative z-10 max-w-lg">
+                  <div className="mb-8 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 text-white shadow-inner backdrop-blur-md">
+                    <Zap className="h-7 w-7" />
+                  </div>
+                  <h3 className="mb-4 text-3xl font-black text-white">Réactivité absolue</h3>
+                  <p className="text-lg leading-relaxed text-white/70">
+                    Intervention rapide sur site et en atelier, de la conception à la mise en service. Nous nous adaptons à vos contraintes de production les plus strictes.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -292,9 +329,7 @@ function AboutPage() {
           <div className="wrap">
             <div className="text-center mb-12">
               <div className="flex items-center justify-center gap-3 mb-4">
-                <span className="block h-px w-8 bg-[#e0141c]" />
-                <span className="text-xs font-bold uppercase tracking-[0.28em] text-[#e0141c]">Notre equipe</span>
-                <span className="block h-px w-8 bg-[#e0141c]" />
+                <span className="inline-flex rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-[#e0141c]">Nos atouts</span>
               </div>
               <h2 className="text-white font-black" style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)" }}>
                 Professionnalisme au quotidien
@@ -333,8 +368,9 @@ function AboutPage() {
               <a href="tel:+21650191004" className="btn btn-red px-10 py-4 shadow-lg shadow-red-500/25">
                 +216 50 191 004
               </a>
-              <a href="mailto:u2i@u2iprocess.com" className="btn btn-outline-dark px-10 py-4">
-                u2i@u2iprocess.com
+              <a href="mailto:u2i@u2iprocess.com" className="btn btn-outline-dark px-10 py-4 inline-flex items-center justify-center gap-3">
+                <img src={emailIcon} alt="Email" className="h-4 w-auto object-contain inline-block" />
+                <span>Contactez-nous</span>
               </a>
             </div>
           </div>

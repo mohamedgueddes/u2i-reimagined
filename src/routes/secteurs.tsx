@@ -78,7 +78,6 @@ function SectorsPage() {
             <span className="text-[#e0141c]">Secteurs</span>
           </div>
           <div className="flex items-center gap-4 mb-4">
-            <span className="block h-px w-10 bg-[#e0141c]" />
             <span className="text-xs font-bold uppercase tracking-[0.28em] text-[#e0141c]">Nos Secteurs</span>
           </div>
           <h1
@@ -118,7 +117,6 @@ function SectorsPage() {
                 <div className="grid gap-12 lg:grid-cols-2 items-center">
                   <div className={`${textOrder}`}>
                     <div className="flex items-center gap-3 mb-6">
-                      <span className="block h-px w-8 bg-[#e0141c]" />
                       <span className="text-xs font-bold uppercase tracking-[0.28em] text-[#e0141c]">{sector.tag}</span>
                     </div>
                     <h2 className={titleClass} style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)" }}>
