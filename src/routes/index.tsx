@@ -30,6 +30,7 @@ import slide3Image from "@/assets/WhatsApp Image 2026-07-08 at 1.16.12 PM - Copi
 import slide4Image from "@/assets/sector-mobilier.jpg";
 import presentationVideo from "@/assets/U2I video banner.mp4";
 import logoImage from "@/assets/logo-u2i-removebg-preview.png";
+import emailIcon from "@/assets/partners/email.png";
 import axxairLogoImage from "@/assets/partners/AXXAIR-logo.png";
 import sanofiLogoImage from "@/assets/partners/Sanofi.png";
 import hikmaLogoImage from "@/assets/partners/LOGO HIKMA.jpg";
@@ -38,6 +39,26 @@ import teriakLogoImage from "@/assets/partners/LOGO TERIAK.png";
 import unimedLogoImage from "@/assets/partners/UNIMED LOGO .png";
 import cevaLogoImage from "@/assets/partners/LOGO_CEVA_SANTE_ANIMALE.jpg";
 import deliceLogoImage from "@/assets/partners/LOGO DELICE.jpg";
+import logoBerg from "@/assets/partners/Berg-Life-Sciences-295x300.jpg";
+import logoEnex from "@/assets/partners/Enex-we-know-how-logo-retina-300x262.png";
+import logoDarEssaydali from "@/assets/partners/LOGO-DAR_ESSAYDALI_94d6073d8c-1-300x280.png";
+import logoMedika from "@/assets/partners/LOGO-MEDIKA-300x269.png";
+import logoMedis from "@/assets/partners/LOGO-MediS-300x264.png";
+import logoSteripharm from "@/assets/partners/LOGO-STERIPHARM-300x268.png";
+import logoPierreFabre from "@/assets/partners/Pierre-fabre-logo-1-300x288.png";
+import logoCogia from "@/assets/partners/cogia-logo.png";
+import logoLmp from "@/assets/partners/logo-LMP-291x300.jpg";
+import logoMeva from "@/assets/partners/logo-MEVA-150x150.jpg";
+import logoPharmaDearm from "@/assets/partners/logo-PHARMA-DEARM-296x300.png";
+import logoAdwya from "@/assets/partners/logo-adwya--300x291.png";
+import logoThera from "@/assets/partners/logo-thera-400-150x150.png";
+import logoOpella from "@/assets/partners/opella-1-300x278.png";
+import logoSartorius from "@/assets/partners/sartorius-logo-vector-2-300x288.png";
+import logoTetrapak from "@/assets/partners/tetrapak-logo-screen-400-150x150.png";
+import logoWinthrop from "@/assets/partners/winthrop-1-300x296.jpg";
+import logoBwt from "@/assets/partners/BWT.png";
+import logoAdvancs from "@/assets/partners/LOGO-ADVANCS-150x150.jpeg";
+import logoDorcas from "@/assets/partners/dorcas-logo-300x225.png";
 import referencesBgImage from "@/assets/axxair-1.jpg";
 import cert1 from "@/assets/certif/Certificat-de-formation-Axxair-BOUKER-AMEN-ALLAH_page-0001_001-scaled.jpg";
 import cert2 from "@/assets/certif/Certificat-de-formation-Axxair-IMED-MANFOUKH_page-0001_001-scaled.jpg";
@@ -122,12 +143,12 @@ const SECTORS = [
 ] as const;
 
 const EQUIPMENTS = [
-  { title: "Endoscopie", image: equip1 },
-  { title: "Contrôle de gaz", image: equip2 },
-  { title: "Coupe rectification", image: equip3 },
-  { title: "Soudure orbitale", image: equip4 },
-  { title: "Commande numérique", image: equip5 },
-  { title: "Skid Dégraissage", image: equip6 },
+  { id: "endoscopie", title: "Endoscopie", image: equip1 },
+  { id: "controle-gaz", title: "Contrôle de gaz", image: equip2 },
+  { id: "coupe-rectification", title: "Coupe rectification", image: equip3 },
+  { id: "soudure-orbitale", title: "Soudure orbitale", image: equip4 },
+  { id: "commande-numerique", title: "Commande numérique", image: equip5 },
+  { id: "skid-degraissage", title: "Skid Dégraissage", image: equip6 },
 ] as const;
 
 const PARTNER_LOGOS = [
@@ -138,6 +159,27 @@ const PARTNER_LOGOS = [
   { title: "UNIMED", image: unimedLogo.url },
   { title: "CEVA Santé Animale", image: cevaLogo.url },
   { title: "Délice", image: deliceLogo.url },
+  { title: "Berg Life Sciences", image: logoBerg },
+  { title: "Enex", image: logoEnex },
+  { title: "Dar Essaydali", image: logoDarEssaydali },
+  { title: "Medika", image: logoMedika },
+  { title: "MediS", image: logoMedis },
+
+  { title: "Cogia", image: logoCogia },
+  { title: "LMP", image: logoLmp },
+  { title: "MEVA", image: logoMeva },
+  { title: "Pharma Dearm", image: logoPharmaDearm },
+  { title: "Adwya", image: logoAdwya },
+  { title: "Thera", image: logoThera },
+  { title: "Opella", image: logoOpella },
+  { title: "Sartorius", image: logoSartorius },
+  { title: "Tetrapak", image: logoTetrapak },
+  { title: "Winthrop", image: logoWinthrop },
+  { title: "BWT", image: logoBwt },
+  { title: "Advancs", image: logoAdvancs },
+  { title: "Dorcas", image: logoDorcas },
+  { title: "Steripharm", image: logoSteripharm },
+  { title: "Pierre Fabre", image: logoPierreFabre },
 ] as const;
 
 const CERTIFICATIONS = [
@@ -261,7 +303,9 @@ function SiteHeader() {
             <span className="font-bold tracking-wider">+216 50 191 004</span>
             <span className="text-white/20 mx-1">|</span>
             <Mail className="h-3.5 w-3.5 ml-1" />
-            <span className="font-bold tracking-wider">u2i@u2iprocess.com</span>
+            <a href="mailto:u2i@u2iprocess.com" className="ml-2 inline-block hover:opacity-90 transition-opacity">
+              <img src={emailIcon} alt="Email" className="h-5 w-auto object-contain inline-block" />
+            </a>
             <span className="opacity-80 hidden sm:inline ml-2 border-l border-white/20 pl-4">
               Vous avez un nouveau projet ? N'hésitez pas à nous contacter !
             </span>
@@ -445,25 +489,25 @@ function BottomStatsBar() {
   ];
 
   return (
-    <div className="w-full border-t border-white/10 bg-black/70 backdrop-blur-xl hidden md:block z-20 relative">
+    <div className="w-full border-t border-white/10 bg-black/70 backdrop-blur-xl z-20 relative">
       <div className="wrap">
-        <div className="grid grid-cols-4 divide-x divide-white/10">
+        <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-white/10">
           {stats.map((stat, i) => (
-            <div key={i} className="group relative py-6 px-4 lg:px-8 flex flex-col xl:flex-row xl:items-center gap-2 xl:gap-6 overflow-hidden">
+            <div key={i} className="group relative py-4 px-3 sm:px-4 lg:px-8 flex flex-col xl:flex-row xl:items-center gap-2 xl:gap-6 overflow-hidden">
               {/* Subtle hover background sweep */}
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#e0141c]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none -translate-x-full group-hover:translate-x-full ease-in-out" />
 
               {/* Top Accent Line */}
               <div className="absolute top-0 left-0 right-0 h-[2px] bg-[#e0141c] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
 
-              <div className="text-4xl lg:text-5xl font-black text-white tracking-tighter drop-shadow-lg transition-transform duration-500 group-hover:-translate-y-1">
+              <div className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tighter drop-shadow-lg transition-transform duration-500 group-hover:-translate-y-1">
                 {stat.value}
               </div>
               <div className="flex-1">
-                <div className="text-[10px] lg:text-[11px] font-bold uppercase tracking-[0.2em] text-white/50 group-hover:text-[#e0141c] transition-colors duration-300">
+                <div className="text-[9px] sm:text-[10px] lg:text-[11px] font-bold uppercase tracking-[0.2em] text-white/50 group-hover:text-[#e0141c] transition-colors duration-300">
                   {stat.title}
                 </div>
-                <div className="text-xs lg:text-sm font-medium text-white/80 group-hover:text-white transition-colors duration-300">
+                <div className="text-[11px] sm:text-xs lg:text-sm font-medium text-white/80 group-hover:text-white transition-colors duration-300">
                   {stat.subtitle}
                 </div>
               </div>
@@ -622,39 +666,6 @@ function Hero() {
 /* ------------------------------ Presentation ----------------------------- */
 
 function Presentation() {
-  const [isInView, setIsInView] = useState(false);
-  const desktopVideoRef = useRef<HTMLVideoElement | null>(null);
-  const mobileVideoRef = useRef<HTMLVideoElement | null>(null);
-
-  useEffect(() => {
-    const section = document.getElementById("presentation");
-    if (!section) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const [entry] = entries;
-        setIsInView(entry?.isIntersecting ?? false);
-      },
-      { threshold: 0.2, rootMargin: "0px 0px -10% 0px" },
-    );
-
-    observer.observe(section);
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    [desktopVideoRef.current, mobileVideoRef.current].forEach((video) => {
-      if (!video) return;
-
-      if (isInView) {
-        video.currentTime = 0;
-        void video.play().catch(() => undefined);
-      } else {
-        video.pause();
-      }
-    });
-  }, [isInView]);
-
   return (
     <section id="presentation" className="section-paper overflow-hidden relative">
       <div className="wrap">
@@ -704,7 +715,6 @@ function Presentation() {
             className="lg:py-10 mt-12 lg:mt-0"
           >
             <div className="mb-4 flex items-center gap-3">
-              <span className="block h-px w-8 lg:w-10 bg-[#e0141c]" />
               <h3 className="text-xs lg:text-sm font-bold uppercase tracking-widest text-[#e0141c] italic">
                 Qui sommes nous
               </h3>
@@ -728,13 +738,9 @@ function Presentation() {
             <div className="mt-8 mb-8 lg:hidden">
               <div className="relative mx-auto w-full max-w-sm">
                 <div className="relative overflow-hidden shadow-xl">
-                  <video
-                    ref={mobileVideoRef}
-                    src={presentationVideo}
-                    muted
-                    playsInline
-                    loop
-                    preload="metadata"
+                  <img
+                    src={presentationImage}
+                    alt="Univers Inox Industriel"
                     className="w-full h-auto object-cover aspect-[4/5]"
                   />
                   <div className="absolute inset-0 border-[3px] border-white/20 pointer-events-none mix-blend-overlay" />
@@ -800,11 +806,9 @@ function Sectors() {
           className="flex flex-col items-center text-center mb-16"
         >
           <div className="mb-4 flex items-center gap-3">
-            <span className="block h-px w-8 bg-[#e0141c]" />
             <h3 className="text-sm font-bold uppercase tracking-widest text-[#e0141c] italic">
               Savoir-Faire
             </h3>
-            <span className="block h-px w-8 bg-[#e0141c]" />
           </div>
           <h2 className="text-neutral-950 font-black mb-6" style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}>
             Nos Domaines d'Expertise
@@ -911,11 +915,9 @@ function Equipments() {
       <div className="wrap mb-16 relative z-10">
         <div className="flex flex-col items-center text-center">
           <div className="mb-4 flex items-center gap-3">
-            <span className="block h-px w-8 bg-[#e0141c]" />
             <h3 className="text-sm font-bold uppercase tracking-widest text-[#e0141c] italic">
               Haute Précision
             </h3>
-            <span className="block h-px w-8 bg-[#e0141c]" />
           </div>
           <h2 className="text-white font-black mb-6" style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}>
             Notre Parc Machines
@@ -935,9 +937,10 @@ function Equipments() {
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
         >
           {EQUIPMENTS.map((eq, i) => (
-            <motion.article
+            <motion.a
               variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } } }}
               key={i}
+              href={`/equipements#${eq.id}`}
               className="group relative overflow-hidden rounded-2xl bg-neutral-900 border border-white/10 transition-all duration-500 hover:-translate-y-2 hover:border-white/20 hover:shadow-[0_10px_40px_rgba(224,20,28,0.15)]"
               style={{ aspectRatio: "4/3" }}
             >
@@ -967,7 +970,7 @@ function Equipments() {
 
               {/* Highlight line on hover */}
               <div className="absolute bottom-0 left-0 h-1 bg-[#e0141c] w-0 transition-all duration-500 group-hover:w-full" />
-            </motion.article>
+            </motion.a>
           ))}
         </motion.div>
 
@@ -1051,37 +1054,225 @@ function References() {
   );
 }
 
-/* -------------------------------- Header -------------------------------- */
+/* -------------------------------- Certifications -------------------------------- */
+
+function CertLightbox({
+  certs,
+  index,
+  onClose,
+  onNav,
+}: {
+  certs: typeof CERTIFICATIONS;
+  index: number;
+  onClose: () => void;
+  onNav: (i: number) => void;
+}) {
+  const cert = certs[index];
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+      if (e.key === "ArrowRight") onNav((index + 1) % certs.length);
+      if (e.key === "ArrowLeft") onNav((index - 1 + certs.length) % certs.length);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [index, certs.length, onClose, onNav]);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
+      className="fixed inset-0 z-[200] flex items-center justify-center p-4 md:p-10"
+      onClick={onClose}
+    >
+      {/* Backdrop */}
+      <div className="absolute inset-0 bg-black/92 backdrop-blur-2xl" />
+
+      {/* Close */}
+      <button
+        onClick={onClose}
+        className="absolute top-5 right-5 z-10 flex items-center gap-1.5 rounded-full bg-white/10 border border-white/15 px-4 py-2 text-xs font-bold text-white/70 hover:text-white hover:bg-white/20 transition-all"
+      >
+        <X className="h-4 w-4" /> Fermer
+      </button>
+
+      {/* Counter */}
+      <div className="absolute top-5 left-5 z-10 px-4 py-2 rounded-full bg-white/8 border border-white/10 text-xs font-mono text-white/50">
+        {String(index + 1).padStart(2, "0")} / {String(certs.length).padStart(2, "0")}
+      </div>
+
+      {/* Prev */}
+      <button
+        onClick={(e) => { e.stopPropagation(); onNav((index - 1 + certs.length) % certs.length); }}
+        className="absolute left-4 md:left-8 z-10 w-11 h-11 rounded-full bg-white/10 border border-white/15 flex items-center justify-center text-white hover:bg-[#e0141c] hover:border-[#e0141c] transition-all duration-300"
+        aria-label="Précédent"
+      >
+        <ArrowUpRight className="h-4 w-4 rotate-[225deg]" />
+      </button>
+
+      {/* Next */}
+      <button
+        onClick={(e) => { e.stopPropagation(); onNav((index + 1) % certs.length); }}
+        className="absolute right-4 md:right-8 z-10 w-11 h-11 rounded-full bg-white/10 border border-white/15 flex items-center justify-center text-white hover:bg-[#e0141c] hover:border-[#e0141c] transition-all duration-300"
+        aria-label="Suivant"
+      >
+        <ArrowUpRight className="h-4 w-4 rotate-45" />
+      </button>
+
+      {/* Image panel */}
+      <motion.div
+        key={index}
+        initial={{ scale: 0.88, opacity: 0, y: 24 }}
+        animate={{ scale: 1, opacity: 1, y: 0 }}
+        transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
+        className="relative z-10 flex flex-col items-center max-w-3xl w-full"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="w-full overflow-hidden rounded-3xl shadow-[0_30px_80px_rgba(0,0,0,0.6)] border border-white/10">
+          <img
+            src={cert.image}
+            alt={cert.title}
+            className="w-full h-auto object-contain max-h-[75vh]"
+          />
+        </div>
+        <div className="mt-5 text-center">
+          <p className="text-[10px] uppercase tracking-[0.3em] text-[#e0141c] font-bold mb-1">Certification</p>
+          <h3 className="text-white font-bold text-base md:text-lg">{cert.title}</h3>
+        </div>
+
+        {/* Dot pagination */}
+        <div className="flex items-center gap-2 mt-5">
+          {certs.map((_, i) => (
+            <button
+              key={i}
+              onClick={(e) => { e.stopPropagation(); onNav(i); }}
+              className={`rounded-full transition-all duration-300 ${i === index ? "w-6 h-2 bg-[#e0141c]" : "w-2 h-2 bg-white/25 hover:bg-white/50"}`}
+              aria-label={`Aller à ${i + 1}`}
+            />
+          ))}
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
 
 function PartnersMarquee() {
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const featured = CERTIFICATIONS[0];
+  const rest = CERTIFICATIONS.slice(1);
+
   return (
     <section className="section-paper">
       <div className="wrap">
-        <h3 className="mb-10 text-center text-sm font-semibold uppercase tracking-[0.2em] text-black/40">
-          Certifications
-        </h3>
-        <motion.div
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          variants={{ show: { transition: { staggerChildren: 0.1 } } }}
-          className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4"
-        >
-          {CERTIFICATIONS.map((cert) => (
-            <motion.div
-              variants={{ hidden: { opacity: 0, scale: 0.95 }, show: { opacity: 1, scale: 1, transition: { duration: 0.5 } } }}
-              key={cert.title}
-              className="overflow-hidden bg-white shadow-sm"
-            >
+        <div className="mx-auto max-w-3xl text-center mb-10 md:mb-16">
+          <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-black/40">
+            Certifications
+          </h3>
+          <p className="text-base leading-relaxed text-slate-600">
+            Nos attestations officielles, formations et homologations qui garantissent la conformité et la qualité de nos équipements.
+          </p>
+        </div>
+
+        {/* Main layout: Featured left + masonry right */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-6 md:gap-8">
+          
+          {/* Featured certificate */}
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="group relative cursor-pointer"
+            onClick={() => setLightboxIndex(0)}
+          >
+            <div className="relative overflow-hidden rounded-[2rem] border border-slate-200 shadow-lg transition-all duration-700 hover:shadow-[0_12px_36px_rgba(224,20,28,0.14)] hover:border-[#e0141c]/40 h-full min-h-[500px] lg:min-h-0">
               <img
-                src={cert.image}
-                alt={cert.title}
+                src={featured.image}
+                alt={featured.title}
                 loading="lazy"
-                className="h-64 w-full object-cover"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
               />
-            </motion.div>
-          ))}
-        </motion.div>
+              {/* Gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent" />
+
+              {/* Number badge */}
+              <div className="absolute top-6 left-6 w-10 h-10 rounded-full bg-black/50 backdrop-blur-md border border-white/20 flex items-center justify-center">
+                <span className="text-xs font-black text-white/70 font-mono">01</span>
+              </div>
+
+              {/* Expand icon */}
+              <div className="absolute top-6 right-6 w-10 h-10 rounded-full bg-[#e0141c] flex items-center justify-center opacity-0 scale-75 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 shadow-lg shadow-[#e0141c]/40">
+                <ArrowUpRight className="h-4 w-4 text-white" />
+              </div>
+
+              {/* Content */}
+              <div className="absolute inset-x-0 bottom-0 p-8">
+                <p className="text-[10px] uppercase tracking-[0.3em] text-[#e0141c] font-bold mb-2">Certification Officielle</p>
+                <h3 className="text-white font-black text-2xl md:text-3xl leading-tight mb-4">{featured.title}</h3>
+                <div className="flex items-center gap-3">
+                  <div className="h-px flex-1 bg-white/20" />
+                  <span className="text-white/40 text-xs uppercase tracking-wider">Cliquer pour agrandir</span>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Masonry / staggered grid */}
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={{ show: { transition: { staggerChildren: 0.08, delayChildren: 0.2 } } }}
+            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-5 auto-rows-[200px] md:auto-rows-[220px]"
+          >
+            {rest.map((cert, idx) => {
+              const i = idx + 1;
+              const isTall = idx === 1 || idx === 4;
+              return (
+                <motion.div
+                  key={cert.title}
+                  variants={{
+                    hidden: { opacity: 0, y: 25, scale: 0.96 },
+                    show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] } }
+                  }}
+                  className={`group relative cursor-pointer overflow-hidden rounded-2xl border border-slate-200 shadow-sm transition-all duration-500 hover:-translate-y-1 hover:border-[#e0141c]/40 hover:shadow-[0_20px_40px_rgba(224,20,28,0.15)] ${isTall ? "row-span-2" : "row-span-1"}`}
+                  onClick={() => setLightboxIndex(i)}
+                >
+                  <img
+                    src={cert.image}
+                    alt={cert.title}
+                    loading="lazy"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
+
+                  {/* Number badge */}
+                  <div className="absolute top-3 left-3 w-8 h-8 rounded-full bg-black/60 backdrop-blur-md border border-white/15 flex items-center justify-center">
+                    <span className="text-[10px] font-black text-white/70 font-mono">{String(i + 1).padStart(2, '0')}</span>
+                  </div>
+
+                  {/* Expand icon on hover */}
+                  <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-[#e0141c] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 scale-75 group-hover:scale-100 shadow-lg shadow-[#e0141c]/40">
+                    <ArrowUpRight className="h-3.5 w-3.5 text-white" />
+                  </div>
+
+                  {/* Bottom label */}
+                  <div className="absolute inset-x-0 bottom-0 p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-400">
+                    <p className="text-[9px] uppercase tracking-[0.25em] text-[#e0141c] font-bold mb-1">Certification</p>
+                    <h4 className="text-white font-bold text-xs md:text-sm leading-tight line-clamp-2">{cert.title}</h4>
+                  </div>
+
+                  {/* Red bottom line accent */}
+                  <div className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-[#e0141c] to-transparent w-0 group-hover:w-full transition-all duration-500" />
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </div>
 
         <div className="mt-14 flex justify-center">
           <a href="/references" className="group flex items-center gap-2 rounded-full bg-black px-6 py-3 text-sm font-bold text-white transition-all hover:bg-neutral-800 hover:shadow-lg">
@@ -1092,6 +1283,15 @@ function PartnersMarquee() {
           </a>
         </div>
       </div>
+
+      {lightboxIndex !== null && (
+        <CertLightbox
+          certs={CERTIFICATIONS}
+          index={lightboxIndex}
+          onClose={() => setLightboxIndex(null)}
+          onNav={(i) => setLightboxIndex(i)}
+        />
+      )}
     </section>
   );
 }
@@ -1204,9 +1404,10 @@ function SiteFooter() {
             )}
           </div>
           <div className="flex items-center gap-3">
-            <span className="mr-2 text-xs text-white/50">
-              +216 50 191 004 · u2i@u2iprocess.com
-            </span>
+            <span className="mr-2 text-xs text-white/50">+216 50 191 004</span>
+            <a href="mailto:u2i@u2iprocess.com" className="inline-block hover:opacity-90 transition-opacity ml-2">
+              <img src={emailIcon} alt="Email" className="h-5 w-auto object-contain inline-block" />
+            </a>
             {[Facebook, Instagram, Linkedin, Youtube].map((Icon, i) => (
               <a
                 key={i}
@@ -1224,7 +1425,10 @@ function SiteFooter() {
           © {new Date().getFullYear()} U2I Process — Univers Inox Industriel · Akouda, Sousse — Tunisie
           <span className="ml-4 inline-flex items-center gap-2">
             <Phone className="inline h-3 w-3 text-primary" /> +216 50 191 004
-            <Mail className="ml-3 inline h-3 w-3 text-primary" /> u2i@u2iprocess.com
+            <Mail className="ml-3 inline h-3 w-3 text-primary" />
+            <a href="mailto:u2i@u2iprocess.com" className="ml-2 inline-block hover:opacity-90 transition-opacity">
+              <img src={emailIcon} alt="Email" className="h-5 w-auto object-contain inline-block" />
+            </a>
           </span>
         </div>
       </div>

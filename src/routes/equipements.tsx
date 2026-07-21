@@ -253,14 +253,13 @@ function EquipmentsPage() {
         <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-black/30" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30" />
 
-        <div className="wrap relative z-10 flex h-full flex-col justify-center pt-16">
+          <div className="wrap relative z-10 flex h-full flex-col justify-center pt-16">
           <div className="mb-2 flex items-center gap-2 text-sm text-white/50">
             <Link to="/" className="hover:text-white transition-colors">Accueil</Link>
             <span className="text-white/30">/</span>
             <span className="text-[#e0141c]">Équipements</span>
           </div>
           <div className="flex items-center gap-4 mb-2">
-            <span className="block h-px w-10 bg-[#e0141c]" />
             <span className="text-xs font-bold uppercase tracking-[0.28em] text-[#e0141c]">Parc Machines & Technologie</span>
           </div>
           <h1 className="text-white font-black" style={{ fontSize: "clamp(2rem, 5vw, 3.8rem)", lineHeight: 1.05, letterSpacing: "-0.025em" }}>
@@ -304,7 +303,6 @@ function EquipmentsPage() {
                   {/* Left or Right: Text info */}
                   <div className={`${textOrder} order-1 min-w-0`}>
                     <div className="flex items-center gap-3 mb-4">
-                      <span className="block h-px w-8 bg-[#e0141c]" />
                       <span className="text-xs font-bold uppercase tracking-[0.28em] text-[#e0141c]">{eq.tag}</span>
                     </div>
                     <h2 className={titleClass} style={{ fontSize: "clamp(1.5rem, 3.5vw, 2.6rem)", lineHeight: 1.1 }}>
